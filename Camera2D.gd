@@ -1,7 +1,7 @@
 extends Camera2D
 
 
-onready var MAX_ZOOM = Vector2(3, 3)
+onready var MAX_ZOOM = Vector2(2.5, 2.5)
 onready var MIN_ZOOM = Vector2(1, 1)
 onready var mouse_start_pos
 onready var screen_start_position
