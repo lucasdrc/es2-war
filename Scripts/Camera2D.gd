@@ -6,7 +6,6 @@ onready var MIN_ZOOM = Vector2(1, 1)
 onready var mouse_start_pos
 onready var screen_start_position
 onready var dragging = false
-export var abc = 0
 
 func _ready():
 	pass 
