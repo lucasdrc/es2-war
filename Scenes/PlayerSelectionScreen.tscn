@@ -1,0 +1,127 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/AmericanCaptainPatrius02Fre-G06G.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Resources/TitleScreenBg.jpg" type="Texture" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 1 )
+
+[node name="PlayerSelectionScreen" type="Control"]
+margin_right = -3200.0
+margin_bottom = -1800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleScreenBg" type="Sprite" parent="."]
+position = Vector2( 800.872, 453.32 )
+scale = Vector2( 0.834, 0.834 )
+texture = ExtResource( 2 )
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 100.0
+margin_top = 100.0
+margin_right = 1500.0
+margin_bottom = 800.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerSelectionLabel" type="Label" parent="Menu"]
+margin_right = 1400.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "Escolha de jogadores"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerSelection" type="VBoxContainer" parent="Menu"]
+margin_top = 52.0
+margin_right = 1400.0
+margin_bottom = 700.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Player" type="VBoxContainer" parent="Menu/PlayerSelection"]
+margin_right = 1400.0
+margin_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="Menu/PlayerSelection/Player"]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="JogadorLabel" type="Label" parent="Menu/PlayerSelection/Player/ColorRect"]
+margin_left = 70.7465
+margin_top = 173.529
+margin_right = 218.747
+margin_bottom = 197.529
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Jogador 1"
+align = 1
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DesativadoButton" type="Button" parent="Menu/PlayerSelection/Player/ColorRect"]
+margin_right = 12.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DesativadoLabel" type="Label" parent="Menu/PlayerSelection/Player/ColorRect/DesativadoButton"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Desativado"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JogadorButton" type="Button" parent="Menu/PlayerSelection/Player/ColorRect"]
+margin_right = 12.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JogadorLabel" type="Label" parent="Menu/PlayerSelection/Player/ColorRect/JogadorButton"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Jogador"
+
+[node name="IAButton" type="Button" parent="Menu/PlayerSelection/Player/ColorRect"]
+margin_right = 12.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IALabel" type="Label" parent="Menu/PlayerSelection/Player/ColorRect/IAButton"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "IA"
