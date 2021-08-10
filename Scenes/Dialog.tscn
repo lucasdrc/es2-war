@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Dialog.gd" type="Script" id=1]
+
+[node name="DialogBox" type="Polygon2D"]
+color = Color( 0.254902, 0.207843, 0.207843, 1 )
+polygon = PoolVector2Array( 2.4137, 0.038147, 404.362, -1.64365, 406.044, 222.035, -0.94989, 222.035 )
+
+[node name="DialogTextLabel" type="RichTextLabel" parent="."]
+margin_left = 1.68176
+margin_top = 63.9081
+margin_right = 404.682
+margin_bottom = 145.908
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 153.35
+margin_top = 155.786
+margin_right = 233.35
+margin_bottom = 175.786
+text = "OK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Button" to="DialogTextLabel" method="_on_Button_pressed"]
