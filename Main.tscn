@@ -1,13 +1,59 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Board.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
+[ext_resource path="res://WindowDialog.gd" type="Script" id=3]
+
+[sub_resource type="Theme" id=1]
 
 [node name="Main" type="Node2D"]
 
 [node name="Board" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1161.42, 1570.89 )
+
+[node name="Painel" type="Panel" parent="Board"]
+margin_left = -1797.99
+margin_top = 904.433
+margin_right = 1810.01
+margin_bottom = 1077.43
+theme = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VerCartas" type="ColorRect" parent="Board/Painel"]
+margin_left = 1980.35
+margin_top = 15.9602
+margin_right = 2321.35
+margin_bottom = 153.96
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BotaoVerCartas" type="Button" parent="Board/Painel/VerCartas"]
+margin_left = 8.0
+margin_top = 7.0
+margin_right = 333.0
+margin_bottom = 132.0
+text = "Ver Cartas"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="JanelaCartas" type="WindowDialog" parent="Board/Painel/VerCartas"]
+visible = true
+margin_left = -1621.18
+margin_top = -1421.09
+margin_right = 1211.82
+margin_bottom = -244.088
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 3, 3 )
 script = ExtResource( 2 )
+
+[connection signal="pressed" from="Board/Painel/VerCartas/BotaoVerCartas" to="Board/Painel/VerCartas/JanelaCartas" method="_on_Button_pressed"]
