@@ -4,6 +4,8 @@ export var adjacent_names = []
 onready var Main = get_node("/root/Main")
 
 var player_owner_index = null
+var player_card_owner_index = null
+var shape = null
 var infantary_count = 0
 
 func _process(delta):

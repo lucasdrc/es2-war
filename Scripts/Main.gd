@@ -6,8 +6,12 @@ onready var player_scene = preload("res://Scenes/Player.tscn")
 onready var PLAYER_COUNT = 3
 onready var START_INFANTARY_COUNT = 35
 onready var current_player = 0
+
 onready var territories = get_tree().get_nodes_in_group("territories")
+onready var shapes = ["triangle", "rectangle", "circle"]
+onready var shapeList = []
 onready var selected_territory = null
+
 onready var players = []
 
 func _ready():
@@ -29,10 +33,15 @@ func _start_territories():
 		players.append(instance)
 		add_child(instance)
 	territories.shuffle()
+	for i in range(shapes.size()):
+		for j in range(territories.size() / shapes.size()):
+			shapeList.append(shapes[i])
+	shapeList.shuffle()
 	for i in range(territories.size()):
 		current_player = i%PLAYER_COUNT
 		place_infantary(territories[i])
 		territories[i].player_owner_index = current_player
+		territories[i].shape = shapeList[i]
 
 func place_infantary(territory):
 	if current_state == GAME_STATES.INITIAL:

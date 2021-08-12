@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Resources/world-domination-game-board-2-1-1.jpg" type="Texture" id=1]
 [ext_resource path="res://Scenes/Marker.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/JanelaCartas.gd" type="Script" id=3]
 
 [node name="Board" type="Node2D"]
 
@@ -370,6 +371,29 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 step = 1.0
+
+[node name="WindowDialog" type="WindowDialog" parent="Map"]
+visible = true
+margin_left = -1541.0
+margin_top = -710.0
+margin_right = 1487.0
+margin_bottom = 733.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Map"]
+margin_left = -107.547
+margin_top = 951.909
+margin_right = 133.453
+margin_bottom = 1032.91
+text = "Ver Cartas"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Map/Button" to="Map/WindowDialog" method="_on_Button_pressed"]
 
 [editable path="Map/Markers/Asia/Kamchatka"]
 [editable path="Map/Markers/Asia/Middle East"]
