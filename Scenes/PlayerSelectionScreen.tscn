@@ -1,10 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Fonts/AmericanCaptainPatrius02Fre-G06G.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/TitleScreenBg.jpg" type="Texture" id=2]
 [ext_resource path="res://Scenes/Buttons/BackButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Buttons/StartGameButton.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/PlayerSelectionScreen.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/PlayerSelectionScreen.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/PlayerSelection/BluePlayerSelection.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/PlayerSelection/GreenPlayerSelection.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/PlayerSelection/OrangePlayerSelection.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/PlayerSelection/WhitePlayerSelection.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/PlayerSelection/YellowPlayerSelection.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/PlayerSelection/BlackPlayerSelection.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -26,19 +32,22 @@ scale = Vector2( 0.834, 0.834 )
 texture = ExtResource( 2 )
 
 [node name="Menu" type="VBoxContainer" parent="."]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 1500.0
-margin_bottom = 800.0
+margin_left = 180.0
+margin_top = 50.0
+margin_right = 1340.0
+margin_bottom = 866.0
+rect_min_size = Vector2( 1240, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayerSelectionLabel" type="Label" parent="Menu"]
-margin_right = 1400.0
+margin_right = 1240.0
 margin_bottom = 48.0
+rect_min_size = Vector2( 1240, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 1 )
@@ -50,36 +59,84 @@ __meta__ = {
 
 [node name="PlayerSelection" type="VBoxContainer" parent="Menu"]
 margin_top = 52.0
-margin_right = 1400.0
-margin_bottom = 766.0
+margin_right = 1240.0
+margin_bottom = 816.0
+rect_min_size = Vector2( 1240, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+alignment = 1
 
 [node name="Players" type="GridContainer" parent="Menu/PlayerSelection"]
-margin_right = 1400.0
-margin_bottom = 650.0
-rect_min_size = Vector2( 1400, 650 )
+margin_right = 1240.0
+margin_bottom = 700.0
+rect_min_size = Vector2( 1240, 650 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/vseparation = 20
+custom_constants/hseparation = 40
 columns = 2
 
+[node name="BluePlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 600.0
+margin_bottom = 220.0
+
+[node name="BlackPlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 11 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 640.0
+margin_right = 1240.0
+margin_bottom = 220.0
+
+[node name="GreenPlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 240.0
+margin_right = 600.0
+margin_bottom = 460.0
+
+[node name="OrangePlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 640.0
+margin_top = 240.0
+margin_right = 1240.0
+margin_bottom = 460.0
+
+[node name="YellowPlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 10 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 480.0
+margin_right = 600.0
+margin_bottom = 700.0
+
+[node name="WhitePlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 640.0
+margin_top = 480.0
+margin_right = 1240.0
+margin_bottom = 700.0
+
 [node name="BottomButtons" type="GridContainer" parent="Menu/PlayerSelection"]
-margin_top = 654.0
-margin_right = 1400.0
-margin_bottom = 714.0
-rect_min_size = Vector2( 1400, 60 )
+margin_top = 704.0
+margin_right = 1240.0
+margin_bottom = 764.0
+rect_min_size = Vector2( 1240, 60 )
 size_flags_horizontal = 3
 columns = 2
 
 [node name="BackButton" parent="Menu/PlayerSelection/BottomButtons" instance=ExtResource( 3 )]
-margin_right = 698.0
+margin_right = 618.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="StartGameButton" parent="Menu/PlayerSelection/BottomButtons" instance=ExtResource( 4 )]
-margin_left = 702.0
-margin_right = 1400.0
+margin_left = 622.0
+margin_right = 1240.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [connection signal="pressed" from="Menu/PlayerSelection/BottomButtons/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Menu/PlayerSelection/BottomButtons/StartGameButton" to="." method="_on_StartGameButton_pressed"]
