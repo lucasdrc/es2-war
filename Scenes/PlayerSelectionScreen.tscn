@@ -1,16 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Fonts/AmericanCaptainPatrius02Fre-G06G.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/TitleScreenBg.jpg" type="Texture" id=2]
 [ext_resource path="res://Scenes/Buttons/BackButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Buttons/StartGameButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/PlayerSelectionScreen.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/PlayerSelection/BluePlayerSelection.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/PlayerSelection/GreenPlayerSelection.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/PlayerSelection/OrangePlayerSelection.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/PlayerSelection/WhitePlayerSelection.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/PlayerSelection/YellowPlayerSelection.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/PlayerSelection/BlackPlayerSelection.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/PlayerSelection/PlayerSelection.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -76,27 +71,54 @@ custom_constants/vseparation = 20
 custom_constants/hseparation = 40
 columns = 2
 
-[node name="BluePlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 6 )]
+[node name="BluePlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 12 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 600.0
 margin_bottom = 220.0
 
-[node name="BlackPlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 11 )]
+[node name="Color" parent="Menu/PlayerSelection/Players/BluePlayerSelection/Player" index="0"]
+color = Color( 0, 0.623529, 1, 1 )
+
+[node name="Label" parent="Menu/PlayerSelection/Players/BluePlayerSelection/Player/Color/GridContainer/VBoxContainer" index="0"]
+margin_top = 81.0
+margin_bottom = 138.0
+text = "Jogador
+azul"
+
+[node name="BlackPlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 12 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 640.0
 margin_right = 1240.0
 margin_bottom = 220.0
 
-[node name="GreenPlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 7 )]
+[node name="Color" parent="Menu/PlayerSelection/Players/BlackPlayerSelection/Player" index="0"]
+color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+
+[node name="Label" parent="Menu/PlayerSelection/Players/BlackPlayerSelection/Player/Color/GridContainer/VBoxContainer" index="0"]
+margin_top = 81.0
+margin_bottom = 138.0
+text = "Jogador
+preto"
+
+[node name="OrangePlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 12 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 240.0
 margin_right = 600.0
 margin_bottom = 460.0
 
-[node name="OrangePlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 8 )]
+[node name="Color" parent="Menu/PlayerSelection/Players/OrangePlayerSelection/Player" index="0"]
+color = Color( 0.639216, 0.239216, 0, 1 )
+
+[node name="Label" parent="Menu/PlayerSelection/Players/OrangePlayerSelection/Player/Color/GridContainer/VBoxContainer" index="0"]
+margin_top = 81.0
+margin_bottom = 138.0
+text = "Jogador
+laranja"
+
+[node name="YellowPlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 12 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 640.0
@@ -104,20 +126,49 @@ margin_top = 240.0
 margin_right = 1240.0
 margin_bottom = 460.0
 
-[node name="YellowPlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 10 )]
+[node name="Color" parent="Menu/PlayerSelection/Players/YellowPlayerSelection/Player" index="0"]
+color = Color( 1, 0.803922, 0, 1 )
+
+[node name="Label" parent="Menu/PlayerSelection/Players/YellowPlayerSelection/Player/Color/GridContainer/VBoxContainer" index="0"]
+margin_top = 81.0
+margin_bottom = 138.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Jogador
+amarelo"
+
+[node name="WhitePlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 12 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 480.0
 margin_right = 600.0
 margin_bottom = 700.0
 
-[node name="WhitePlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 9 )]
+[node name="Color" parent="Menu/PlayerSelection/Players/WhitePlayerSelection/Player" index="0"]
+color = Color( 0.870588, 0.870588, 0.870588, 1 )
+
+[node name="Label" parent="Menu/PlayerSelection/Players/WhitePlayerSelection/Player/Color/GridContainer/VBoxContainer" index="0"]
+margin_top = 81.0
+margin_bottom = 138.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Jogador
+branco"
+
+[node name="GreenPlayerSelection" parent="Menu/PlayerSelection/Players" instance=ExtResource( 12 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 640.0
 margin_top = 480.0
 margin_right = 1240.0
 margin_bottom = 700.0
+
+[node name="Color" parent="Menu/PlayerSelection/Players/GreenPlayerSelection/Player" index="0"]
+color = Color( 0, 0.505882, 0, 1 )
+
+[node name="Label" parent="Menu/PlayerSelection/Players/GreenPlayerSelection/Player/Color/GridContainer/VBoxContainer" index="0"]
+margin_top = 81.0
+margin_bottom = 138.0
+text = "Jogador
+verde"
 
 [node name="BottomButtons" type="GridContainer" parent="Menu/PlayerSelection"]
 margin_top = 704.0
@@ -140,3 +191,16 @@ size_flags_vertical = 3
 
 [connection signal="pressed" from="Menu/PlayerSelection/BottomButtons/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="Menu/PlayerSelection/BottomButtons/StartGameButton" to="." method="_on_StartGameButton_pressed"]
+
+[editable path="Menu/PlayerSelection/Players/BluePlayerSelection"]
+[editable path="Menu/PlayerSelection/Players/BluePlayerSelection/Player/Color/GridContainer/Buttons/PlayerSelectionBox"]
+[editable path="Menu/PlayerSelection/Players/BlackPlayerSelection"]
+[editable path="Menu/PlayerSelection/Players/BlackPlayerSelection/Player/Color/GridContainer/Buttons/PlayerSelectionBox"]
+[editable path="Menu/PlayerSelection/Players/OrangePlayerSelection"]
+[editable path="Menu/PlayerSelection/Players/OrangePlayerSelection/Player/Color/GridContainer/Buttons/PlayerSelectionBox"]
+[editable path="Menu/PlayerSelection/Players/YellowPlayerSelection"]
+[editable path="Menu/PlayerSelection/Players/YellowPlayerSelection/Player/Color/GridContainer/Buttons/PlayerSelectionBox"]
+[editable path="Menu/PlayerSelection/Players/WhitePlayerSelection"]
+[editable path="Menu/PlayerSelection/Players/WhitePlayerSelection/Player/Color/GridContainer/Buttons/PlayerSelectionBox"]
+[editable path="Menu/PlayerSelection/Players/GreenPlayerSelection"]
+[editable path="Menu/PlayerSelection/Players/GreenPlayerSelection/Player/Color/GridContainer/Buttons/PlayerSelectionBox"]

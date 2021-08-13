@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fonts/AmericanCaptainPatrius02Fre-G06G.otf" type="DynamicFontData" id=1]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.686275, 0.686275, 0.686275, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.866667, 0.866667, 0.866667, 1 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 24
 font_data = ExtResource( 1 )
 
@@ -12,29 +18,18 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+toggle_mode = true
+action_mode = 0
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 250.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 250, 50 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-color = Color( 0.859375, 0.859375, 0.859375, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="IALabel" type="Label" parent="ColorRect"]
+[node name="IALabel" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 250, 50 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "IA"
 align = 1

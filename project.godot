@@ -8,15 +8,29 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "PlayerSelectionScreen",
+"language": "GDScript",
+"path": "res://Scripts/PlayerSelectionScreen.gd"
+} ]
+_global_script_class_icons={
+"PlayerSelectionScreen": ""
+}
+
 [application]
 
 config/name="WAR"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/TitleScreen.tscn"
 boot_splash/image="res://indexBW.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.png"
 <<<<<<<Updatedupstreamrun/main_scene="res://Board.tscn"
+
+[autoload]
+
+GameInfo="*res://Scripts/GameInfo.gd"
 
 [display]
 
