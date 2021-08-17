@@ -3,7 +3,7 @@ extends Node2D
 enum GAME_STATES {INITIAL, PLACING_TERRITORIES, ATTACKING, MOVING_TERRITORIES}
 onready var current_state = GAME_STATES.INITIAL
 onready var player_scene = preload("res://Scenes/Player.tscn")
-onready var PLAYER_COUNT = 3
+onready var PLAYER_COUNT = GameInfo.PLAYER_COUNT
 onready var START_INFANTARY_COUNT = 35
 onready var current_player = 0
 
