@@ -34,3 +34,5 @@ text = "abc"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Players" type="Node2D" parent="."]
