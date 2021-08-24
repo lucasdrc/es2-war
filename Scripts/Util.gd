@@ -18,9 +18,9 @@ var territories_by_continent = {
 	"Oceania" : ["Indonesia", "New Guinea", "Western Australia",
 				"Eastern Australia"]}
 var infantaries_received_by_continent_conquered = {
-	"Asia" : 5,
+	"Asia" : 7,
 	"Africa" : 3,
 	"South America" : 2,
-	"North America" : 4,
-	"Europe" : 4,
+	"North America" : 5,
+	"Europe" : 6,
 	"Oceania" : 2}
