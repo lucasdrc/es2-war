@@ -12,6 +12,7 @@ var shape_text = ""
 func _ready():
 	$Panel/ColorRect/Shape.text = shape_text
 	$Panel/ColorRect/Territory.text = territory_text
+	
 	pass # Replace with function body.
 
 
