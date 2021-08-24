@@ -42,6 +42,8 @@ func _start_territories():
 		place_infantary(territories[i])
 		territories[i].player_owner_index = current_player
 		territories[i].shape = shapeList[i]
+		if i % 14 == 0:
+			territories[i].player_card_owner_index = 0
 
 func place_infantary(territory):
 	if current_state == GAME_STATES.INITIAL:
