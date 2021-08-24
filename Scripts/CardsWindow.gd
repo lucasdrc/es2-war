@@ -6,14 +6,14 @@ extends WindowDialog
 # var b = "text"
 
 var card_scene = preload("res://Scenes/Card.tscn")
-
+var player_index = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
 func _on_Button_pressed():
-	init_cards(0)
+	init_cards(player_index)
 	popup()
 	
 

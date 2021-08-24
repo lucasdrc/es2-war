@@ -44,6 +44,8 @@ func _start_territories():
 		territories[i].shape = shapeList[i]
 		if i % 14 == 0:
 			territories[i].player_card_owner_index = 0
+		if i == 15:
+			territories[i].player_card_owner_index = 1
 
 func place_infantary(territory):
 	if current_state == GAME_STATES.INITIAL:
@@ -53,6 +55,9 @@ func place_infantary(territory):
 		else:
 			current_player += 1
 			current_player = current_player%PLAYER_COUNT
+			var windowDialog = get_node("/root/Main/WindowDialog")
+			windowDialog.player_index = current_player
+
 
 func get_current_player():
 	return players[current_player]

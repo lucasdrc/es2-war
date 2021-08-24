@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=3]
 [ext_resource path="res://Resources/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Scripts/JanelaCartas.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/CardsWindow.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -56,7 +56,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
+[node name="ViewCardsButton" type="Button" parent="."]
 margin_left = -107.547
 margin_top = 951.909
 margin_right = 133.453
@@ -66,4 +66,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Button" to="WindowDialog" method="_on_Button_pressed"]
+[connection signal="pressed" from="ViewCardsButton" to="WindowDialog" method="_on_Button_pressed"]
