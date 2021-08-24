@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Fonts/AmericanCaptainPatrius02Fre-G06G.otf" type="DynamicFontData" id=1]
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.686275, 0.686275, 0.686275, 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.866667, 0.866667, 0.866667, 1 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -18,10 +18,13 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 250, 50 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/pressed = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
 toggle_mode = true
 action_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="IALabel" type="Label" parent="."]
 anchor_right = 1.0
