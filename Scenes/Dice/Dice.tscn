@@ -1,0 +1,152 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Dice/BlackSpot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Dice.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1500.0
+margin_bottom = -800.0
+rect_min_size = Vector2( 100, 100 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="One" type="Container" parent="."]
+visible = false
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OneBlackSpot" parent="One" instance=ExtResource( 1 )]
+position = Vector2( 50, 50 )
+
+[node name="Two" type="Container" parent="."]
+visible = false
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TwoBlackSpotOne" parent="Two" instance=ExtResource( 1 )]
+position = Vector2( 80, 20 )
+
+[node name="TwoBlackSpotTwo" parent="Two" instance=ExtResource( 1 )]
+position = Vector2( 20, 80 )
+
+[node name="Three" type="Container" parent="."]
+visible = false
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ThreeBlackSpotOne" parent="Three" instance=ExtResource( 1 )]
+position = Vector2( 80, 20 )
+
+[node name="ThreeBlackSpotTwo" parent="Three" instance=ExtResource( 1 )]
+position = Vector2( 50, 50 )
+
+[node name="ThreeBlackSpotThree" parent="Three" instance=ExtResource( 1 )]
+position = Vector2( 20, 80 )
+
+[node name="Four" type="Container" parent="."]
+visible = false
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FourBlackSpotOne" parent="Four" instance=ExtResource( 1 )]
+position = Vector2( 20, 20 )
+
+[node name="FourBlackSpotTwo" parent="Four" instance=ExtResource( 1 )]
+position = Vector2( 80, 20 )
+
+[node name="FourBlackSpotThree" parent="Four" instance=ExtResource( 1 )]
+position = Vector2( 20, 80 )
+
+[node name="FourBlackSpotFour" parent="Four" instance=ExtResource( 1 )]
+position = Vector2( 80, 80 )
+
+[node name="Five" type="Container" parent="."]
+visible = false
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FiveBlackSpotOne" parent="Five" instance=ExtResource( 1 )]
+position = Vector2( 20, 20 )
+
+[node name="FiveBlackSpotTwo" parent="Five" instance=ExtResource( 1 )]
+position = Vector2( 80, 20 )
+
+[node name="FiveBlackSpotThree" parent="Five" instance=ExtResource( 1 )]
+position = Vector2( 50, 50 )
+
+[node name="FiveBlackSpotFour" parent="Five" instance=ExtResource( 1 )]
+position = Vector2( 20, 80 )
+
+[node name="FiveBlackSpotFive" parent="Five" instance=ExtResource( 1 )]
+position = Vector2( 80, 80 )
+
+[node name="Six" type="Container" parent="."]
+visible = false
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SixBlackSpotOne" parent="Six" instance=ExtResource( 1 )]
+position = Vector2( 20, 20 )
+
+[node name="SixBlackSpotTwo" parent="Six" instance=ExtResource( 1 )]
+position = Vector2( 80, 20 )
+
+[node name="SixBlackSpotThree" parent="Six" instance=ExtResource( 1 )]
+position = Vector2( 20, 50 )
+
+[node name="SixBlackSpotFour" parent="Six" instance=ExtResource( 1 )]
+position = Vector2( 80, 50 )
+
+[node name="SixBlackSpotFive" parent="Six" instance=ExtResource( 1 )]
+position = Vector2( 20, 80 )
+
+[node name="SixBlackSpotSix" parent="Six" instance=ExtResource( 1 )]
+position = Vector2( 80, 80 )
