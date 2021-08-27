@@ -14,6 +14,7 @@ onready var players = []
 
 func _ready():
 	randomize()
+	_instantiating_players()
 	_start_territories()
 	current_player = 0
 
@@ -24,14 +25,16 @@ func _process(delta):
 	$Tips.text = "Current player: " + get_current_player().color.name + '\n'
 	$Tips.text += "Game round fase: " + str(GameInfo.GAME_STATES.keys()[current_state])
 
-func _start_territories():
+func _instantiating_players():
 	for i in range(PLAYER_COUNT):
-		var instance = player_scene.instance()
-		instance.infantary_count = START_INFANTARY_COUNT
-		instance.color = instance.COLORS[i]
-		instance.name = "Player " + str(i + 1)
-		players.append(instance)
-		$Players.add_child(instance)
+		var new_player = player_scene.instance()
+		new_player.infantary_count = START_INFANTARY_COUNT
+		new_player.color = new_player.COLORS[i]
+		new_player.name = "Player " + str(i + 1)
+		players.append(new_player)
+		$Players.add_child(new_player)
+
+func _start_territories():
 	territories.shuffle()
 	for i in range(territories.size()):
 		current_player = i%PLAYER_COUNT
@@ -92,7 +95,6 @@ func get_player(index) -> Player:
 
 func get_current_state():
 	return current_state
-
 
 func _on_NextPhaseButton_pressed():
 	if(current_state == GameInfo.GAME_STATES.ATTACKING):
