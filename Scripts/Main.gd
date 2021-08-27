@@ -24,6 +24,22 @@ func _process(delta):
 	$Info.text += "Infantary remaining: " + str(players[current_player].infantary_count)
 	$Tips.text = "Current player: " + get_current_player().color.name + '\n'
 	$Tips.text += "Game round fase: " + str(GameInfo.GAME_STATES.keys()[current_state])
+	_game_control()
+
+func _current_player_movement_done():
+	if(current_state == GameInfo.GAME_STATES.INITIAL or
+	   current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES):
+		return players[current_player].infantary_count == 0
+
+func update_current_player():
+	current_player = (current_player + 1)%PLAYER_COUNT
+	
+func _game_control():
+	if(current_state == GameInfo.GAME_STATES.INITIAL and _current_player_movement_done()):
+		update_current_player()
+		if(current_player == 0): change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
+	elif(current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES and _current_player_movement_done()):
+		change_game_state(GameInfo.GAME_STATES.ATTACKING)
 
 func _instantiating_players():
 	for i in range(PLAYER_COUNT):
@@ -42,21 +58,9 @@ func _start_territories():
 		territories[i].player_owner_index = current_player
 
 func place_infantary(territory):
-	if current_state == GameInfo.GAME_STATES.INITIAL:
-		if(players[current_player].infantary_count):
-			players[current_player].infantary_count -= 1
-			territory.infantary_count += 1
-		else:
-			current_player += 1
-			current_player = current_player%PLAYER_COUNT
-			if(current_player == 0):
-				change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
-	elif current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES:
-		if(players[current_player].infantary_count):
-			players[current_player].infantary_count -= 1
-			territory.infantary_count += 1
-		else:
-			change_game_state(GameInfo.GAME_STATES.ATTACKING)
+	if(players[current_player].infantary_count):
+		players[current_player].infantary_count -= 1
+		territory.infantary_count += 1
 
 func attack_territory(attacking_territory: Territory, defending_territory: Territory):
 	if(attacking_territory.infantary_count == 1):
