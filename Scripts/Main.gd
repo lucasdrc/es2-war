@@ -19,11 +19,9 @@ func _ready():
 	current_player = 0
 
 func _process(delta):
-	$Info.text = "Current state: " + str(GameInfo.GAME_STATES.keys()[current_state]) + '\n'
-	$Info.text += "Current player: " + get_current_player().color.name + '\n'
-	$Info.text += "Infantary remaining: " + str(players[current_player].infantary_count)
-	$Tips.text = "Current player: " + get_current_player().color.name + '\n'
-	$Tips.text += "Game round fase: " + str(GameInfo.GAME_STATES.keys()[current_state])
+	$Info.text = "CURRENT PLAYER: " + get_current_player().color.name + '\n'
+	$Info.text += "GAME TURN PHASE: " + str(GameInfo.GAME_STATES.keys()[current_state]) + '\n'
+	$Info.text += "INFANTARY REMAINING: " + str(players[current_player].infantary_count)
 	_update_game_state()
 	_update_NextPhaseButton()
 

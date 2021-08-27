@@ -25,23 +25,10 @@ zoom = Vector2( 3, 3 )
 script = ExtResource( 2 )
 
 [node name="Info" type="RichTextLabel" parent="."]
-margin_left = -1670.57
-margin_top = 896.599
-margin_right = -670.574
-margin_bottom = 1096.6
-rect_pivot_offset = Vector2( 1025.24, 396.65 )
-mouse_filter = 2
-custom_fonts/normal_font = SubResource( 1 )
-text = "abc"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tips" type="RichTextLabel" parent="."]
-margin_left = -500.727
-margin_top = -1046.73
-margin_right = 499.273
-margin_bottom = -920.729
+margin_left = -501.0
+margin_top = -1050.0
+margin_right = 499.0
+margin_bottom = -909.0
 rect_pivot_offset = Vector2( 1025.24, 396.65 )
 mouse_filter = 2
 custom_fonts/normal_font = SubResource( 1 )
