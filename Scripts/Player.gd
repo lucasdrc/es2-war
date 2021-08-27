@@ -7,7 +7,7 @@ var COLORS = [
 	{"color": Color.green, "name": "GREEN"},
 	{"color": Color.blue, "name": "BLUE"},
 	{"color": Color.orange, "name": "ORANGE"},
-	{"color": Color.burlywood, "name": "?"},
+	{"color": Color.burlywood, "name": "CREAM"},
 	{"color": Color.black, "name": "BLACK"}
 ]
 var infantary_count = 0
