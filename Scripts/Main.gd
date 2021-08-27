@@ -21,6 +21,8 @@ func _process(delta):
 	$Info.text = "Current state: " + str(GameInfo.GAME_STATES.keys()[current_state]) + '\n'
 	$Info.text += "Current player: " + get_current_player().color.name + '\n'
 	$Info.text += "Infantary remaining: " + str(players[current_player].infantary_count)
+	$Tips.text = "Current player: " + get_current_player().color.name + '\n'
+	$Tips.text += "Game round fase: " + str(GameInfo.GAME_STATES.keys()[current_state])
 
 func _start_territories():
 	for i in range(PLAYER_COUNT):
