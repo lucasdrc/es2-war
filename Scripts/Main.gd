@@ -24,7 +24,8 @@ func _process(delta):
 	$Info.text += "Infantary remaining: " + str(players[current_player].infantary_count)
 	$Tips.text = "Current player: " + get_current_player().color.name + '\n'
 	$Tips.text += "Game round fase: " + str(GameInfo.GAME_STATES.keys()[current_state])
-	_game_control()
+	_update_game_state()
+	_update_NextPhaseButton()
 
 func _current_player_movement_done():
 	if(current_state == GameInfo.GAME_STATES.INITIAL or
@@ -34,12 +35,27 @@ func _current_player_movement_done():
 func update_current_player():
 	current_player = (current_player + 1)%PLAYER_COUNT
 	
-func _game_control():
+func _update_game_state():
 	if(current_state == GameInfo.GAME_STATES.INITIAL and _current_player_movement_done()):
 		update_current_player()
 		if(current_player == 0): change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 	elif(current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES and _current_player_movement_done()):
 		change_game_state(GameInfo.GAME_STATES.ATTACKING)
+
+func _update_NextPhaseButton():
+	if(current_state == GameInfo.GAME_STATES.ATTACKING):
+		$NextPhaseButton.visible = true
+		$NextPhaseButton.text = "DONE ATTACKING"
+	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES):
+		$NextPhaseButton.text = "FINISH TURN"
+	else: $NextPhaseButton.visible = false
+
+func _on_NextPhaseButton_pressed():
+	if(current_state == GameInfo.GAME_STATES.ATTACKING):
+		change_game_state(GameInfo.GAME_STATES.MOVING_TERRITORIES)
+	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES):
+		update_current_player()
+		change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 
 func _instantiating_players():
 	for i in range(PLAYER_COUNT):
@@ -88,8 +104,6 @@ func change_game_state(new_state):
 	current_state = new_state
 	if new_state == GameInfo.GAME_STATES.PLACING_TERRITORIES:
 		(players[current_player] as Player).receive_infantary()
-	elif new_state == GameInfo.GAME_STATES.ATTACKING:
-		pass
 		
 func get_current_player() -> Player:
 	return players[current_player]
@@ -99,11 +113,3 @@ func get_player(index) -> Player:
 
 func get_current_state():
 	return current_state
-
-func _on_NextPhaseButton_pressed():
-	if(current_state == GameInfo.GAME_STATES.ATTACKING):
-		change_game_state(GameInfo.GAME_STATES.MOVING_TERRITORIES)
-	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES):
-		current_player += 1
-		current_player = current_player%PLAYER_COUNT
-		change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
