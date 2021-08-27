@@ -92,3 +92,12 @@ func get_player(index) -> Player:
 
 func get_current_state():
 	return current_state
+
+
+func _on_NextPhaseButton_pressed():
+	if(current_state == GameInfo.GAME_STATES.ATTACKING):
+		change_game_state(GameInfo.GAME_STATES.MOVING_TERRITORIES)
+	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES):
+		current_player += 1
+		current_player = current_player%PLAYER_COUNT
+		change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
