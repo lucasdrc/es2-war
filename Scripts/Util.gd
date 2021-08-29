@@ -1,0 +1,26 @@
+var territories_by_continent = {
+	"Asia" : ["Kamchatka", "Middle East", "India",
+				"Siam", "China", "Ural", "Japan",
+				"Siberia", "Mongolia", "Irkutsk",
+				"Yakutsk"],
+	"Africa" : ["North Africa", "Congo",
+				"South Africa", "East Africa",
+				"Egypt", "Madagascar"],
+	"South America" : ["Argentina", "Brazil",
+						"Peru", "Venezuela"],
+	"North America" : ["Alaska", "Alberta",
+						"Eastern US", "Greenland",
+						"Mexico", "Northwest Territories",
+						"Ontario", "Quebec", "Western US"],
+	"Europe" : ["Iceland", "Great Britain", "Eastern Europe",
+				"Western Europe", "Northern Europe",
+				"Scandinavia", "Ukraine", "Afghanistan"],
+	"Oceania" : ["Indonesia", "New Guinea", "Western Australia",
+				"Eastern Australia"]}
+var infantaries_received_by_continent_conquered = {
+	"Asia" : 7,
+	"Africa" : 3,
+	"South America" : 2,
+	"North America" : 5,
+	"Europe" : 6,
+	"Oceania" : 2}

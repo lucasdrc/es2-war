@@ -76,7 +76,6 @@ margin_right = 320.0
 margin_bottom = 210.0
 
 [connection signal="pressed" from="Player/Color/GridContainer/Buttons/PlayerSelectionBox/Player/ColorRect/ButtonsPlayerSelection/PlayerSelectionButton" to="." method="_on_PlayerSelectionButton_pressed"]
-[connection signal="pressed" from="Player/Color/GridContainer/Buttons/PlayerSelectionBox/Player/ColorRect/ButtonsPlayerSelection/IAButton" to="." method="_on_IaButton_pressed"]
 [connection signal="pressed" from="Player/Color/GridContainer/Buttons/PlayerSelectionBox/Player/ColorRect/ButtonsPlayerSelection/IAButton" to="." method="_on_IaSelectionButton_pressed"]
 [connection signal="pressed" from="Player/Color/GridContainer/Buttons/PlayerSelectionBox/Player/ColorRect/ButtonsPlayerSelection/DesativadoButton" to="." method="_on_DisabledSelectionButton_pressed"]
 

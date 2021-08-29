@@ -36,6 +36,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+
 [node name="WindowDialog" type="WindowDialog" parent="."]
 visible = true
 margin_left = -450.72
@@ -67,3 +68,6 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="ViewCardsButton" to="WindowDialog" method="_on_Button_pressed"]
+
+[node name="Players" type="Node2D" parent="."]
+

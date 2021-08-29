@@ -9,13 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Main",
+"language": "GDScript",
+"path": "res://Scripts/Main.gd"
+}, {
+"base": "Node2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Scripts/Player.gd"
+}, {
 "base": "Node",
 "class": "PlayerSelectionScreen",
 "language": "GDScript",
 "path": "res://Scripts/PlayerSelectionScreen.gd"
+}, {
+"base": "Node2D",
+"class": "Territory",
+"language": "GDScript",
+"path": "res://Scripts/Territory.gd"
 } ]
 _global_script_class_icons={
-"PlayerSelectionScreen": ""
+"Main": "",
+"Player": "",
+"PlayerSelectionScreen": "",
+"Territory": ""
 }
 
 [application]
