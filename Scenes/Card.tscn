@@ -61,3 +61,14 @@ text = "Triangle"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CheckBox" type="CheckBox" parent="Panel/ColorRect"]
+margin_left = 63.2675
+margin_top = 116.543
+margin_right = 87.2675
+margin_bottom = 140.543
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Panel/ColorRect/CheckBox" to="." method="_on_CheckBox_pressed"]

@@ -14,6 +14,8 @@ onready var shapes = ["triangle", "rectangle", "circle"]
 onready var shapeList = []
 onready var selected_territory = null
 
+onready var cards_infantary_trade_amount = [4, 6, 8, 10, 12, 15]
+
 onready var players = []
 
 func _ready():
@@ -57,9 +59,9 @@ func place_infantary(territory):
 		else:
 			current_player += 1
 			current_player = current_player%PLAYER_COUNT
-			var windowDialog = get_node("/root/Main/WindowDialog")
-			windowDialog.player_index = current_player
-
+			var cards_window = get_node("/root/Main/CardsWindow")
+			cards_window.player_index = current_player
+			cards_window.card_scenes = []
 			if(current_player == 0):
 				change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 	elif current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES:

@@ -36,8 +36,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-
-[node name="WindowDialog" type="WindowDialog" parent="."]
+[node name="CardsWindow" type="WindowDialog" parent="."]
 visible = true
 margin_left = -450.72
 margin_top = -265.723
@@ -48,11 +47,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="WindowDialog"]
+[node name="GridContainer" type="GridContainer" parent="CardsWindow"]
 margin_right = 3020.0
 margin_bottom = 1440.0
 custom_constants/hseparation = 400
 columns = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TradeCardsButton" type="Button" parent="CardsWindow"]
+margin_left = 417.99
+margin_top = 456.541
+margin_right = 470.99
+margin_bottom = 509.541
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -67,7 +75,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="ViewCardsButton" to="WindowDialog" method="_on_Button_pressed"]
-
 [node name="Players" type="Node2D" parent="."]
 
+[connection signal="pressed" from="CardsWindow/TradeCardsButton" to="CardsWindow" method="_on_TradeCardsButton_pressed"]
+[connection signal="pressed" from="ViewCardsButton" to="CardsWindow" method="_on_Button_pressed"]
