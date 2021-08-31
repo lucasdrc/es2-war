@@ -18,6 +18,7 @@ font_data = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="Board" parent="." instance=ExtResource( 1 )]
+position = Vector2( -4.75684, 0 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -25,13 +26,15 @@ zoom = Vector2( 3, 3 )
 script = ExtResource( 2 )
 
 [node name="Info" type="RichTextLabel" parent="."]
-margin_left = -1675.33
-margin_top = 906.113
-margin_right = -675.331
-margin_bottom = 1106.11
+margin_left = -501.0
+margin_top = -1050.0
+margin_right = 499.0
+margin_bottom = -909.0
+rect_pivot_offset = Vector2( 1025.24, 396.65 )
 mouse_filter = 2
 custom_fonts/normal_font = SubResource( 1 )
-text = "abc"
+text = "Tips
+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -80,3 +83,16 @@ __meta__ = {
 
 [connection signal="pressed" from="CardsWindow/TradeCardsButton" to="CardsWindow" method="_on_TradeCardsButton_pressed"]
 [connection signal="pressed" from="ViewCardsButton" to="CardsWindow" method="_on_Button_pressed"]
+[node name="NextPhaseButton" type="Button" parent="."]
+margin_left = 656.0
+margin_top = -1031.0
+margin_right = 1150.0
+margin_bottom = -939.0
+custom_fonts/font = SubResource( 1 )
+text = "DONE ATTACKING"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="NextPhaseButton" to="." method="_on_NextPhaseButton_pressed"]
+[connection signal="pressed" from="NextPhaseButton" to="." method="_on_Button_pressed"]

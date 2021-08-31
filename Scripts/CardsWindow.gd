@@ -16,12 +16,13 @@ func _ready():
 
 
 func _on_Button_pressed():
-	if not first_init_cards:
-		init_cards(player_index)
-		first_init_cards = true
+	#if not first_init_cards:
+	init_cards(player_index)
+	#	first_init_cards = true
 	popup()
 
 func init_cards(player_index):
+	card_scenes = []
 	for child in $GridContainer.get_children():
 		child.queue_free()
 	var territories = get_tree().get_nodes_in_group("territories")
@@ -32,6 +33,9 @@ func init_cards(player_index):
 			card_scene_instance.shape_text = territory.shape
 			$GridContainer.add_child(card_scene_instance)
 			card_scenes.append(card_scene_instance)
+	var card_scenes_available = card_scenes != []
+	set_trade_button_and_checkboxes_visibility(card_scenes_available)
+
 
 func _on_TradeCardsButton_pressed():
 	var selected_cards = []
@@ -46,7 +50,6 @@ func _on_TradeCardsButton_pressed():
 	print(cards_infantary_trade_amount)
 	if len(selected_cards) == 3 and len(shapes) != 2:
 		print("trade cards")
-		trade_cards()
 	else:
 		print("do not trade cards")
 	
@@ -57,10 +60,9 @@ func trade_cards():
 		cards_infantary_trade_amount.append(new_amount)
 	print(cards_infantary_trade_amount[cards_infantary_trade_index])
 	cards_infantary_trade_index += 1
-	set_trade_button_and_checkboxes_invisible()
-	pass
+	set_trade_button_and_checkboxes_visibility(false)
 
-func set_trade_button_and_checkboxes_invisible():
-	$TradeCardsButton.visible = false
+func set_trade_button_and_checkboxes_visibility(is_visible):
+	$TradeCardsButton.visible = is_visible
 	for card in card_scenes:
-		card.find_node("CheckBox").visible = false
+		card.find_node("CheckBox").visible = is_visible
