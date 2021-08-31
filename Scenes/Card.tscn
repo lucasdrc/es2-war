@@ -18,17 +18,17 @@ __meta__ = {
 }
 
 [node name="Panel" type="VBoxContainer" parent="."]
-margin_left = 34.7058
-margin_top = 55.0621
-margin_right = 334.706
-margin_bottom = 255.062
+margin_left = 35.0
+margin_top = 55.0
+margin_right = 185.0
+margin_bottom = 255.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorRect" type="ColorRect" parent="Panel"]
-margin_right = 300.0
-margin_bottom = 199.0
+margin_right = 150.0
+margin_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

@@ -10,13 +10,15 @@ var card_scenes = []
 var player_index = 0
 var cards_infantary_trade_index = 0
 var cards_infantary_trade_amount = [4, 6, 8, 10, 12, 15]
-
+var first_init_cards = false
 func _ready():
 	pass # Replace with function body.
 
 
 func _on_Button_pressed():
-	init_cards(player_index)
+	if not first_init_cards:
+		init_cards(player_index)
+		first_init_cards = true
 	popup()
 
 func init_cards(player_index):
@@ -28,7 +30,6 @@ func init_cards(player_index):
 			var card_scene_instance = card_scene.instance()
 			card_scene_instance.territory_text = territory.name
 			card_scene_instance.shape_text = territory.shape
-
 			$GridContainer.add_child(card_scene_instance)
 			card_scenes.append(card_scene_instance)
 
@@ -56,4 +57,10 @@ func trade_cards():
 		cards_infantary_trade_amount.append(new_amount)
 	print(cards_infantary_trade_amount[cards_infantary_trade_index])
 	cards_infantary_trade_index += 1
+	set_trade_button_and_checkboxes_invisible()
 	pass
+
+func set_trade_button_and_checkboxes_invisible():
+	$TradeCardsButton.visible = false
+	for card in card_scenes:
+		card.find_node("CheckBox").visible = false
