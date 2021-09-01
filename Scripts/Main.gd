@@ -13,7 +13,6 @@ onready var territories = get_tree().get_nodes_in_group("territories")
 onready var shapes = ["triangle", "rectangle", "circle"]
 onready var shapeList = []
 onready var selected_territory = null
-
 onready var players = []
 
 func _ready():
@@ -48,8 +47,6 @@ func reveive_territory_card():
 	while counter < len(territories) and not exit:
 		if territories[counter].player_card_owner_index == null:
 			territories[counter].player_card_owner_index = current_player
-			print(territories[counter])
-			print(territories[counter].player_card_owner_index)
 			exit = true
 		counter += 1
 
@@ -71,14 +68,24 @@ func _update_NextPhaseButton():
 		$NextPhaseButton.text = "DONE ATTACKING"
 	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES):
 		$NextPhaseButton.text = "FINISH TURN"
+	elif(current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS):
+		$NextPhaseButton.text = "DONE TRADING CARDS"
 	else: $NextPhaseButton.visible = false
 
 func _on_NextPhaseButton_pressed():
+	var cards_window = get_node("/root/Main/CardsWindow")
+	cards_window.init_cards(current_player)
+	if (current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS and not cards_window.has_to_trade_cards()):
+		change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 	if(current_state == GameInfo.GAME_STATES.ATTACKING):
 		change_game_state(GameInfo.GAME_STATES.MOVING_TERRITORIES)
 	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES):
 		update_current_player()
-		change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
+		cards_window.init_cards(current_player)
+		if (cards_window.can_trade_cards()):
+			change_game_state(GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS)
+		else:
+			change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 
 func _instantiating_players():
 	for i in range(PLAYER_COUNT):
@@ -95,15 +102,20 @@ func _start_territories():
 		for j in range(territories.size() / shapes.size()):
 			shapeList.append(shapes[i])
 	shapeList.shuffle()
+	var dummy = []
+	var dummy2 = []
 	for i in range(territories.size()):
 		current_player = i%PLAYER_COUNT
 		place_infantary(territories[i])
 		territories[i].player_owner_index = current_player
 		territories[i].shape = shapeList[i]
-		#if i % 14 == 0:
-		#	territories[i].player_card_owner_index = 0
-		#if i == 15:
-		#	territories[i].player_card_owner_index = 1
+		if not dummy.has(territories[i].shape):
+			territories[i].player_card_owner_index = 0
+			dummy.append(territories[i].shape)
+			
+		if i > 20 and not dummy2.has(territories[i].shape):
+			territories[i].player_card_owner_index = 1
+			dummy2.append(territories[i].shape)
 
 
 func place_infantary(territory):

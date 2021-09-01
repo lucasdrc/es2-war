@@ -23,11 +23,20 @@ func show_number_of_infantaries_received(infantaries):
 func receive_infantary():
 	var infantaries_received_by_number_of_territories = receive_infantary_by_number_of_territories()
 	var infantaries_received_by_continens_conquered = receive_infantary_by_continents_conquered()
+	var infantaries_received_by_traded_cards = receive_infantary_by_traded_cards()
 	var infantaries_received = infantaries_received_by_continens_conquered
 	infantaries_received[""] = infantaries_received_by_number_of_territories
 	for i in infantaries_received:
 		infantary_count += infantaries_received[i]
+	infantary_count += infantaries_received_by_traded_cards
 	show_number_of_infantaries_received(infantary_count)
+
+func receive_infantary_by_traded_cards():
+	var trade_amount = get_node("/root/Main/CardsWindow").cards_infantary_trade_amount
+	get_node("/root/Main/CardsWindow").cards_infantary_trade_amount = 0
+	print("trade_amount")
+	print(trade_amount)
+	return trade_amount
 
 func receive_infantary_by_number_of_territories():
 	var number_territories = len(get_territories_conquered_by_player())
