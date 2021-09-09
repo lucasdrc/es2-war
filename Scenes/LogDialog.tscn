@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Fonts/AmericanCaptainPatrius02Fre-G06G.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/LogDialog.gd" type="Script" id=2]
 [ext_resource path="res://Resources/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -18,6 +19,7 @@ font_data = ExtResource( 3 )
 [node name="LogDialog" type="Polygon2D"]
 color = Color( 0.254902, 0.207843, 0.207843, 1 )
 polygon = PoolVector2Array( -873, -811, 849, -811, 849, 707, -873, 707 )
+script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -71,3 +73,5 @@ text = "OK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
