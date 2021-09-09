@@ -5,6 +5,7 @@ class_name Main
 onready var current_state = GameInfo.GAME_STATES.INITIAL
 onready var player_scene = preload("res://Scenes/Player.tscn")
 onready var move_infantary_dialog = preload("res://Scenes/WinnerInfantaryChooser.tscn")
+onready var log_dialog_scene = preload("res://Scenes/LogDialog.tscn")
 onready var PLAYER_COUNT = GameInfo.PLAYER_COUNT
 onready var START_INFANTARY_COUNT = 22
 onready var current_player = 0
@@ -111,3 +112,7 @@ func get_player(index) -> Player:
 
 func get_current_state():
 	return current_state
+
+func _on_LogButton_pressed():
+	var log_dialog = log_dialog_scene.instance()
+	add_child(log_dialog)
