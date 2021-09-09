@@ -14,7 +14,7 @@ var players = [
 ]
 
 func _ready():
-	pass
+	Log.add_log_msg("Player Selection Screen loaded.")
 
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://Scenes/TitleScreen.tscn")
