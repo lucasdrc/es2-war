@@ -113,6 +113,7 @@ func get_player(index) -> Player:
 func get_current_state():
 	return current_state
 
-func _on_LogButton_pressed():
-	var log_dialog = log_dialog_scene.instance()
-	add_child(log_dialog)
+func _on_LogButton_pressed():	
+	if(get_node_or_null("LogDialog") == null):
+		var log_dialog = log_dialog_scene.instance()
+		add_child(log_dialog)
