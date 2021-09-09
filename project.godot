@@ -49,6 +49,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GameInfo="*res://Scripts/GameInfo.gd"
+Log="*res://Scripts/Log.gd"
 
 [display]
 
