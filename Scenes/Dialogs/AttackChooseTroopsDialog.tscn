@@ -1,19 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Styles/LeftArrowButton.tres" type="StyleBox" id=1]
 [ext_resource path="res://Styles/RightArrowButton.tres" type="StyleBox" id=2]
 [ext_resource path="res://Fonts/AmericanCaptainPatrius02Fre-G06G.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scenes/Buttons/DialogButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/AttackChooseTroopsDialog.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
 font_data = ExtResource( 3 )
 
 [node name="WindowDialog" type="WindowDialog"]
-visible = true
 margin_right = 800.0
 margin_bottom = 450.0
 rect_min_size = Vector2( 450, 450 )
 window_title = "Escolha de tropas"
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -35,7 +41,7 @@ __meta__ = {
 [node name="VSplitContainer" type="VSplitContainer" parent="."]
 margin_top = 50.0
 margin_right = 800.0
-margin_bottom = 450.0
+margin_bottom = 462.0
 rect_min_size = Vector2( 0, 400 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -43,8 +49,8 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="VSplitContainer"]
 margin_right = 800.0
-margin_bottom = 250.0
-rect_min_size = Vector2( 800, 250 )
+margin_bottom = 300.0
+rect_min_size = Vector2( 800, 300 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/vseparation = 50
@@ -54,27 +60,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="VSplitContainer/GridContainer"]
-margin_left = 100.0
+[node name="SubtractButton" type="Button" parent="VSplitContainer/GridContainer"]
 margin_right = 100.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 100, 100 )
 custom_styles/normal = ExtResource( 2 )
 
-[node name="ColorRect" type="ColorRect" parent="VSplitContainer/GridContainer"]
-margin_left = 250.0
+[node name="NumberBox" type="ColorRect" parent="VSplitContainer/GridContainer"]
+margin_left = 150.0
 margin_right = 350.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 200, 200 )
 
-[node name="Label" type="Label" parent="VSplitContainer/GridContainer/ColorRect"]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="Number" type="Label" parent="VSplitContainer/GridContainer/NumberBox"]
+margin_right = 12.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "1"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button2" type="Button" parent="VSplitContainer/GridContainer"]
+[node name="AddButton" type="Button" parent="VSplitContainer/GridContainer"]
 margin_left = 400.0
 margin_right = 500.0
 margin_bottom = 200.0
@@ -82,16 +95,32 @@ rect_min_size = Vector2( 100, 100 )
 custom_styles/normal = ExtResource( 1 )
 
 [node name="HSplitContainer" type="HSplitContainer" parent="VSplitContainer"]
-margin_top = 262.0
+margin_top = 312.0
 margin_right = 800.0
-margin_bottom = 400.0
+margin_bottom = 412.0
+rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="DialogButton" parent="VSplitContainer/HSplitContainer" instance=ExtResource( 4 )]
-margin_bottom = 138.0
+[node name="CancelButton" parent="VSplitContainer/HSplitContainer" instance=ExtResource( 4 )]
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="DialogButton2" parent="VSplitContainer/HSplitContainer" instance=ExtResource( 4 )]
+[node name="DialogLabel" parent="VSplitContainer/HSplitContainer/CancelButton" index="0"]
+text = "Cancelar"
+
+[node name="ConfirmButton" parent="VSplitContainer/HSplitContainer" instance=ExtResource( 4 )]
 margin_left = 262.0
-margin_right = 800.0
-margin_bottom = 138.0
+margin_right = 512.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="DialogLabel" parent="VSplitContainer/HSplitContainer/ConfirmButton" index="0"]
+text = "Confirmar"
+
+[connection signal="pressed" from="VSplitContainer/GridContainer/SubtractButton" to="." method="_on_SubtractButton_pressed"]
+[connection signal="pressed" from="VSplitContainer/GridContainer/AddButton" to="." method="_on_AddButton_pressed"]
+[connection signal="pressed" from="VSplitContainer/HSplitContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
+
+[editable path="VSplitContainer/HSplitContainer/CancelButton"]
+[editable path="VSplitContainer/HSplitContainer/ConfirmButton"]
