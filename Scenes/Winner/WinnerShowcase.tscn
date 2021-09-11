@@ -15,8 +15,11 @@ size = 32
 font_data = SubResource( 3 )
 
 [node name="WinnerShowcase" type="VBoxContainer"]
-margin_right = 684.0
-margin_bottom = 247.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 679.0
+margin_bottom = 242.0
+rect_min_size = Vector2( 674, 237 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -25,9 +28,9 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 684.0
-margin_bottom = 247.0
-rect_min_size = Vector2( 684, 247 )
+margin_right = 674.0
+margin_bottom = 237.0
+rect_min_size = Vector2( 674, 237 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -45,7 +48,7 @@ __meta__ = {
 
 [node name="WinnerText" type="Label" parent="ColorRect/VBoxContainer"]
 margin_right = 634.0
-margin_bottom = 96.0
+margin_bottom = 88.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
@@ -56,26 +59,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="ColorRect/VBoxContainer"]
-margin_top = 100.0
+[node name="Outline" type="ColorRect" parent="ColorRect/VBoxContainer"]
+margin_top = 92.0
 margin_right = 634.0
 margin_bottom = 197.0
+rect_min_size = Vector2( 634, 105 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0, 0, 0, 1 )
+
+[node name="WinnerColor" type="ColorRect" parent="ColorRect/VBoxContainer/Outline"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 624.857
+margin_bottom = 95.5525
+rect_min_size = Vector2( 624, 95 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="ColorRect/VBoxContainer/ColorRect"]
-margin_right = 634.0
-margin_bottom = 97.0
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect/VBoxContainer/Outline/WinnerColor"]
+margin_left = 4.495
+margin_top = -1.49831
+margin_right = 638.495
+margin_bottom = 95.5017
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WinnerName" type="Label" parent="ColorRect/VBoxContainer/ColorRect/CenterContainer"]
+[node name="WinnerName" type="Label" parent="ColorRect/VBoxContainer/Outline/WinnerColor/CenterContainer"]
 margin_left = 231.0
 margin_top = 32.0
 margin_right = 403.0

@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Winner/WinnerShowcase.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Buttons/NewGameButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Fonts/AmericanCaptainPatrius02Fre-G06G.otf" type="DynamicFontData" id=4]
-[ext_resource path="res://Scripts/TitleScreen.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/EndScreen.gd" type="Script" id=5]
 [ext_resource path="res://Resources/TitleScreenBg.jpg" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
@@ -15,7 +15,7 @@ font_data = ExtResource( 1 )
 size = 24
 font_data = ExtResource( 4 )
 
-[node name="TitleScreen" type="Control"]
+[node name="EndScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -3200.0
@@ -25,7 +25,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TitleScreenBg" type="Sprite" parent="."]
+[node name="EndScreenBg" type="Sprite" parent="."]
 position = Vector2( 800.872, 453.32 )
 scale = Vector2( 0.834348, 0.833892 )
 texture = ExtResource( 6 )
@@ -49,19 +49,27 @@ valign = 1
 uppercase = true
 
 [node name="Center_Row" type="VBoxContainer" parent="Menu"]
-margin_top = 172.0
+margin_top = 147.0
 margin_right = 684.0
 margin_bottom = 700.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="WinnerShowcase" parent="Menu/Center_Row" instance=ExtResource( 2 )]
+[node name="OutlineWinnerShowcase" type="ColorRect" parent="Menu/Center_Row"]
+margin_right = 684.0
+margin_bottom = 257.0
+rect_min_size = Vector2( 684, 257 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="WinnerShowcase" parent="Menu/Center_Row/OutlineWinnerShowcase" instance=ExtResource( 2 )]
+margin_top = 4.0
+margin_bottom = 251.0
 
 [node name="Buttons" type="VBoxContainer" parent="Menu/Center_Row"]
-margin_top = 251.0
+margin_top = 261.0
 margin_right = 684.0
-margin_bottom = 473.0
+margin_bottom = 498.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
@@ -69,15 +77,15 @@ alignment = 1
 
 [node name="NewGameButton" parent="Menu/Center_Row/Buttons" instance=ExtResource( 3 )]
 margin_left = 162.0
-margin_top = 81.0
+margin_top = 88.0
 margin_right = 522.0
-margin_bottom = 141.0
+margin_bottom = 148.0
 size_flags_horizontal = 4
 
 [node name="VersionLabel" type="Label" parent="Menu/Center_Row"]
-margin_top = 477.0
+margin_top = 502.0
 margin_right = 684.0
-margin_bottom = 528.0
+margin_bottom = 553.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 2 )
@@ -90,3 +98,5 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="Menu/Center_Row/Buttons/NewGameButton" to="." method="_on_NewGameButton_pressed"]
+
+[editable path="Menu/Center_Row/Buttons/NewGameButton"]
