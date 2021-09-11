@@ -22,7 +22,7 @@ func _on_SubtractButton_pressed():
 		updateNumber()
 
 func updateNumber():
-	$VSplitContainer/GridContainer/NumberBox/Number.text = str(number_troops)
+	$VBoxContainer/CenterContainer/GridContainer/NumberBox/Number.text = str(number_troops)
 
 func _on_CancelButton_pressed():
 	$".".hide()
