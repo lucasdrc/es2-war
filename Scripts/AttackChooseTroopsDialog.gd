@@ -1,5 +1,6 @@
 extends Node
 
+var rng = RandomNumberGenerator.new()
 var number_troops = 1
 var max_troops = 4
 
@@ -7,9 +8,6 @@ var max_troops = 4
 func _ready():
 	
 	pass 
-
-func confirm():
-	pass
 
 func _on_AddButton_pressed():
 	if(number_troops < max_troops):
@@ -26,3 +24,11 @@ func updateNumber():
 
 func _on_CancelButton_pressed():
 	$".".hide()
+
+func _on_ConfirmButton_pressed():
+	var dice_results = []
+	for n in number_troops:
+		dice_results.append(rng.randi_range(1.0, 6.0))
+	print(dice_results)
+	get_parent().showDicesResultDialog(dice_results)
+	$".".hide()	

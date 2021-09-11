@@ -131,6 +131,7 @@ text = "Confirmar"
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/SubtractButton" to="." method="_on_SubtractButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/GridContainer/AddButton" to="." method="_on_AddButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HSplitContainer/CancelButton" to="." method="_on_CancelButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HSplitContainer/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
 
 [editable path="VBoxContainer/HSplitContainer/CancelButton"]
 [editable path="VBoxContainer/HSplitContainer/ConfirmButton"]

@@ -49,8 +49,9 @@ func get_current_player():
 func get_player(index):
 	return players[index]
 
-
+func showDicesResultDialog(attack):
+	$DicesResultDialog.popup()
+	$DicesResultDialog.showAttack(attack)
 
 func _on_Button_pressed():
-	$WindowDialog.popup()
-	pass # Replace with function body.
+	$AttackChooseTroopsDialog.popup()

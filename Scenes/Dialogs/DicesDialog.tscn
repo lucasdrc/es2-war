@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Dice/PlayersDice.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/DicesDialog.gd" type="Script" id=2]
+
+[node name="DicesResultDialog" type="WindowDialog"]
+margin_right = 800.0
+margin_bottom = 450.0
+rect_min_size = Vector2( 450, 450 )
+window_title = "Escolha de tropas"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+rect_min_size = Vector2( 800, 450 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack" parent="GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 400.0
+margin_bottom = 400.0
+
+[node name="Dice1" parent="GridContainer/Attack/GridContainer" index="0"]
+visible = false
+
+[node name="OneBlackSpot" parent="GridContainer/Attack/GridContainer/Dice1/One" index="0"]
+visible = false
+
+[node name="Dice2" parent="GridContainer/Attack/GridContainer" index="1"]
+visible = false
+
+[node name="Dice3" parent="GridContainer/Attack/GridContainer" index="2"]
+visible = false
+
+[node name="Dice4" parent="GridContainer/Attack/GridContainer" index="3"]
+visible = false
+
+[node name="Dice5" parent="GridContainer/Attack/GridContainer" index="4"]
+visible = false
+
+[node name="Dice6" parent="GridContainer/Attack/GridContainer" index="5"]
+visible = false
+
+[node name="Defense" parent="GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 404.0
+margin_right = 804.0
+margin_bottom = 400.0
+
+[node name="Label" parent="GridContainer/Defense" index="0"]
+text = "Defesa"
+
+[node name="Dice1" parent="GridContainer/Defense/GridContainer" index="0"]
+visible = false
+
+[node name="Dice2" parent="GridContainer/Defense/GridContainer" index="1"]
+visible = false
+
+[node name="Dice3" parent="GridContainer/Defense/GridContainer" index="2"]
+visible = false
+
+[node name="Dice4" parent="GridContainer/Defense/GridContainer" index="3"]
+visible = false
+
+[node name="Dice5" parent="GridContainer/Defense/GridContainer" index="4"]
+visible = false
+
+[node name="Dice6" parent="GridContainer/Defense/GridContainer" index="5"]
+visible = false
+
+[editable path="GridContainer/Attack"]
+[editable path="GridContainer/Attack/GridContainer/Dice1"]
+[editable path="GridContainer/Defense"]

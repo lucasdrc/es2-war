@@ -24,30 +24,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="One" type="Container" parent="."]
+[node name="One" type="Control" parent="."]
 visible = false
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="OneBlackSpot" parent="One" instance=ExtResource( 1 )]
 position = Vector2( 50, 50 )
 
-[node name="Two" type="Container" parent="."]
+[node name="Two" type="Control" parent="."]
 visible = false
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TwoBlackSpotOne" parent="Two" instance=ExtResource( 1 )]
 position = Vector2( 80, 20 )
@@ -55,16 +49,13 @@ position = Vector2( 80, 20 )
 [node name="TwoBlackSpotTwo" parent="Two" instance=ExtResource( 1 )]
 position = Vector2( 20, 80 )
 
-[node name="Three" type="Container" parent="."]
+[node name="Three" type="Control" parent="."]
 visible = false
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ThreeBlackSpotOne" parent="Three" instance=ExtResource( 1 )]
 position = Vector2( 80, 20 )
@@ -75,16 +66,13 @@ position = Vector2( 50, 50 )
 [node name="ThreeBlackSpotThree" parent="Three" instance=ExtResource( 1 )]
 position = Vector2( 20, 80 )
 
-[node name="Four" type="Container" parent="."]
+[node name="Four" type="Control" parent="."]
 visible = false
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FourBlackSpotOne" parent="Four" instance=ExtResource( 1 )]
 position = Vector2( 20, 20 )
@@ -98,16 +86,13 @@ position = Vector2( 20, 80 )
 [node name="FourBlackSpotFour" parent="Four" instance=ExtResource( 1 )]
 position = Vector2( 80, 80 )
 
-[node name="Five" type="Container" parent="."]
+[node name="Five" type="Control" parent="."]
 visible = false
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FiveBlackSpotOne" parent="Five" instance=ExtResource( 1 )]
 position = Vector2( 20, 20 )
@@ -124,14 +109,11 @@ position = Vector2( 20, 80 )
 [node name="FiveBlackSpotFive" parent="Five" instance=ExtResource( 1 )]
 position = Vector2( 80, 80 )
 
-[node name="Six" type="Container" parent="."]
+[node name="Six" type="Control" parent="."]
 visible = false
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SixBlackSpotOne" parent="Six" instance=ExtResource( 1 )]
 position = Vector2( 20, 20 )
