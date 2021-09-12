@@ -46,8 +46,10 @@ func _update_game_state():
 		if(current_player == 0): change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 	elif(current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES and _current_player_movement_done()):
 		change_game_state(GameInfo.GAME_STATES.ATTACKING)
+	elif(current_state == GameInfo.GAME_STATES.ATTACKING and _current_player_movement_done()):
+		change_game_state(GameInfo.GAME_STATES.MOVING_TERRITORIES)
 
-func _update_NextPhaseButton():
+func _update_NextPhaseButton(): 
 	if(current_state == GameInfo.GAME_STATES.ATTACKING):
 		$NextPhaseButton.visible = true
 		$NextPhaseButton.text = "DONE ATTACKING"
@@ -85,6 +87,12 @@ func place_infantary(territory):
 		players[current_player].infantary_count -= 1
 		territory.infantary_count += 1
 		Log.add_log_msg("+1 infantary added to %s." % territory.name)
+
+func move_territory(origin_territory: Territory, destination_territory: Territory):
+	if(origin_territory.infantary_count == 1):
+		return
+	origin_territory.infantary_count -= 1
+	destination_territory.infantary_count += 1
 
 func attack_territory(attacking_territory: Territory, defending_territory: Territory):
 	if(attacking_territory.infantary_count == 1):

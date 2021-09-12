@@ -31,7 +31,6 @@ size = 72
 font_data = SubResource( 7 )
 
 [node name="Popup" type="PopupDialog"]
-visible = true
 margin_right = 826.0
 margin_bottom = 378.0
 grow_horizontal = 2

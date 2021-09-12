@@ -14,6 +14,8 @@ var infantary_count = 0
 var color = null
 var util_script = load("res://Scripts/Util.gd").new()
 var selected_territory = null
+var selected_origin_territory = null
+var selected_destination_territory = null
 
 func show_number_of_infantaries_received(infantaries):
 	var dialog_scene = load("res://Scenes/Dialog.tscn").instance()
