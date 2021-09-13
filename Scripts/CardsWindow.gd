@@ -57,15 +57,12 @@ func can_trade_cards():
 			circles.append(card)
 		if card.shape_text == "rectangle":
 			rectangles.append(card)
-	print(triangles)
-	print(circles)
-	print(rectangles)
 	if len(triangles) >= 1 and len(circles) >= 1 and len(rectangles) >= 1:
 		return true
 	if len(triangles) >= 3 or len(circles) >= 3 or len(rectangles) >= 3:
 		return true
 
-func _on_TradeCardsButton_pressed():
+func _on_TradeCardsButton_pressed():	
 	var selected_cards = []
 	var shapes = []
 	for card in card_scenes:
@@ -77,13 +74,16 @@ func _on_TradeCardsButton_pressed():
 	print(shapes)
 	print(cards_infantary_trade)
 	if len(selected_cards) == 3 and len(shapes) != 2:
-		trade_cards()
+		trade_cards(selected_cards)
+		
 		print("trade cards")
 		print_cards(card_scenes)
 		card_scenes = subtract_list(card_scenes, selected_cards)
+		print_cards(card_scenes)
 		for card in selected_cards:
 			card.queue_free()
 		print_cards(card_scenes)
+		set_trade_button_and_checkboxes_visibility(false)
 	else:
 		print("do not trade cards")
 	
@@ -94,7 +94,7 @@ func subtract_list(l1, l2):
 			l3.append(i)
 	return l3
 
-func trade_cards():
+func trade_cards(selected_cards):
 	if cards_infantary_trade_index > 5:
 		var new_amount = cards_infantary_trade[cards_infantary_trade_index - 1] + 5
 		cards_infantary_trade.append(new_amount)
@@ -102,9 +102,16 @@ func trade_cards():
 	cards_infantary_trade_amount = cards_infantary_trade[cards_infantary_trade_index]
 	cards_infantary_trade_index += 1
 	var territories = get_tree().get_nodes_in_group("territories")
+	print_cards(selected_cards)
 	for ter in territories:
 		if ter.player_card_owner_index == player_index:
-			ter.player_card_owner_index = null
+			for card in selected_cards:
+				if card.territory_text == ter.name:
+					if ter.player_owner_index == ter.player_card_owner_index:
+						ter.infantary_count += 2
+					ter.player_card_owner_index = null
+					print(ter.name)
+					
 
 func set_trade_button_and_checkboxes_visibility(is_visible):
 	$TradeCardsButton.visible = is_visible
