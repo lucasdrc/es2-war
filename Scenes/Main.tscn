@@ -94,5 +94,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="NextPhaseButton" to="." method="_on_NextPhaseButton_pressed"]
+[node name="LogButton" type="Button" parent="."]
+margin_left = 1622.36
+margin_top = -1030.37
+margin_right = 1793.36
+margin_bottom = -938.365
+custom_fonts/font = SubResource( 1 )
+text = "LOG"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="NextPhaseButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="NextPhaseButton" to="." method="_on_NextPhaseButton_pressed"]
+[connection signal="pressed" from="LogButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="LogButton" to="." method="_on_LogButton_pressed"]
