@@ -31,3 +31,21 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 				else:
 					if Main.get_current_player().selected_territory and (get_territory().name in Main.get_current_player().selected_territory.adjacent_names):
 						Main.attack_territory(Main.get_current_player().selected_territory, get_territory() as Territory)
+			GameInfo.GAME_STATES.MOVING_TERRITORIES:
+				print(Main.get_current_player().selected_origin_territory)
+				print(Main.get_current_player().selected_destination_territory)
+				if get_parent().player_owner_index == Main.current_player:
+					if Main.get_current_player().selected_origin_territory == null and Main.get_current_player().selected_destination_territory == null:
+						Main.get_current_player().selected_origin_territory = get_territory() as Territory
+						get_territory().selected = true
+					elif Main.get_current_player().selected_origin_territory != null and Main.get_current_player().selected_destination_territory == null:
+						if Main.get_current_player().selected_origin_territory == (get_territory() as Territory):
+							Main.get_current_player().selected_origin_territory.selected = false
+							Main.get_current_player().selected_origin_territory = null
+							print("Descelecionei origem")
+						else:
+							if (get_territory().name in Main.get_current_player().selected_origin_territory.adjacent_names) and get_parent().player_owner_index == Main.current_player:
+								Main.get_current_player().selected_destination_territory = get_territory() as Territory
+								Main.move_territory(Main.get_current_player().selected_origin_territory,Main.get_current_player().selected_destination_territory)
+								Main.get_current_player().selected_destination_territory = null
+						
