@@ -22,6 +22,7 @@ func _on_StartGameButton_pressed():
 	for player in players:
 		if player != 2:
 			count += 1
+			GameInfo.active_players.push_back(player)
 	GameInfo.PLAYER_COUNT = count
 	get_tree().change_scene("res://Scenes/Main.tscn")
 
