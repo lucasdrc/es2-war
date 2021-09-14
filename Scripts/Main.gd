@@ -101,15 +101,23 @@ func _on_NextPhaseButton_pressed():
 			change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 
 func _simulate_ia_player():
-	if(current_state == GameInfo.GAME_STATES.INITIAL or
-	   current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES):
+	OS.delay_msec(200)
+	if(current_state == GameInfo.GAME_STATES.INITIAL): place_territories_ia_player()
+	elif(current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES):
+		var dialog = players[current_player].get_node_or_null("DialogBox")
+		if(dialog): players[current_player].remove_child(dialog)
 		place_territories_ia_player()
-		OS.delay_msec(200)
+	elif(current_state == GameInfo.GAME_STATES.ATTACKING): attack_ia_player()
 
 func place_territories_ia_player():
 	var territories = players[current_player].get_territories_conquered_by_player()
 	var i = random_number_gen.randi_range(0, territories.size() - 1)
 	place_infantary(territories[i])
+
+func attack_ia_player(): pass
+	#var territories = players[current_player].get_territories_conquered_by_player()
+	#var i = random_number_gen.randi_range(0, territories.size() - 1)
+	#place_infantary(territories[i])
 
 func _instantiating_players():
 	for i in range(PLAYER_COUNT):
