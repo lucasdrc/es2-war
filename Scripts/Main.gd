@@ -105,7 +105,7 @@ func _simulate_ia_player():
 	if(current_state == GameInfo.GAME_STATES.INITIAL): place_territories_ia_player()
 	elif(current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES):
 		var dialog = players[current_player].get_node_or_null("DialogBox")
-		if(dialog): players[current_player].remove_child(dialog)
+		if(dialog): dialog.get_node("Button").emit_signal("pressed")
 		place_territories_ia_player()
 	elif(current_state == GameInfo.GAME_STATES.ATTACKING): attack_ia_player()
 
