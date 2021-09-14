@@ -15,11 +15,12 @@ onready var shapes = ["triangle", "rectangle", "circle"]
 onready var shapeList = []
 onready var selected_territory = null
 onready var players = []
+var random_number_gen = RandomNumberGenerator.new()
 
 func _ready():
 	Log.add_log_msg("New game started.")
 	Log.add_log_msg("Main Scene loaded.")
-	randomize()
+	random_number_gen.randomize()
 	_instantiating_players()	
 	_start_territories()
 	current_player = 0
@@ -32,11 +33,15 @@ func _process(delta):
 	$Info.text += "INFANTARY REMAINING: " + str(players[current_player].infantary_count)
 	_update_game_state()
 	_update_NextPhaseButton()
+	if(_current_player_is_ia()): _simulate_ia_player()
 
 func _current_player_movement_done():
 	if(current_state == GameInfo.GAME_STATES.INITIAL or
 	   current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES):
 		return players[current_player].infantary_count == 0
+
+func _current_player_is_ia():
+	return players[current_player].is_ia()
 
 func update_current_player():
 	if (receives_territory_card):
@@ -46,8 +51,7 @@ func update_current_player():
 	Log.add_log_msg("Current player updated: {0} ({1}).".format([players[current_player].name,
 															 players[current_player].color.name]))
 	instantiate_player_cards_window()
-	
-	
+
 func reveive_territory_card():
 	var counter = 0
 	var exit = false
@@ -96,12 +100,24 @@ func _on_NextPhaseButton_pressed():
 		else:
 			change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 
+func _simulate_ia_player():
+	if(current_state == GameInfo.GAME_STATES.INITIAL or
+	   current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES):
+		place_territories_ia_player()
+		OS.delay_msec(200)
+
+func place_territories_ia_player():
+	var territories = players[current_player].get_territories_conquered_by_player()
+	var i = random_number_gen.randi_range(0, territories.size() - 1)
+	place_infantary(territories[i])
+
 func _instantiating_players():
 	for i in range(PLAYER_COUNT):
 		var new_player = player_scene.instance()
 		new_player.infantary_count = START_INFANTARY_COUNT
 		new_player.color = new_player.COLORS[i]
 		new_player.name = "Player " + str(i + 1)
+		new_player.state = GameInfo.active_players[i]
 		players.append(new_player)
 		$Players.add_child(new_player)
 	Log.add_log_msg("Players instantiated.")

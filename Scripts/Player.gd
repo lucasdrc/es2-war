@@ -12,6 +12,7 @@ var COLORS = [
 ]
 var infantary_count = 0
 var color = null
+var state
 var util_script = load("res://Scripts/Util.gd").new()
 var selected_territory = null
 var selected_origin_territory = null
@@ -55,7 +56,7 @@ func get_territories_conquered_by_player():
 		if(ter.player_owner_index == get_index()):
 			owned_territories.append(ter)
 	return owned_territories
-	
+
 func get_territory_cards_owned_by_player():
 	var all_territories = get_tree().get_nodes_in_group("territories")
 	var owned_territory_cards = []
@@ -63,7 +64,6 @@ func get_territory_cards_owned_by_player():
 		if (ter.player_card_owner_index == get_index()):
 			owned_territory_cards.append(ter)
 	return owned_territory_cards
-	
 
 func get_continents_conquered_by_player():
 	var continents_conquered = []
@@ -80,9 +80,12 @@ func continent_conquered_by_player(continent):
 
 func territory_conquered_by_player(territory):
 	return get_tree().get_root().find_node(territory, true, false).player_owner_index == get_index()
-		
+
 func get_infantaries_received_by_continents_conquered(continents_conquered):
 	var infataries_received = {}
 	for continent in continents_conquered:
 		infataries_received[continent] = util_script.infantaries_received_by_continent_conquered[continent]
 	return infataries_received
+
+func is_ia():
+	return self.state == GameInfo.PLAYER_STATE.IA
