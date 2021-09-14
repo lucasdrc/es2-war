@@ -6,6 +6,8 @@ export var adjacent_names = []
 onready var Main = get_node("/root/Main")
 
 var player_owner_index = null
+var player_card_owner_index = null
+var shape = null
 var infantary_count = 0
 var selected = false
 var counter = 0

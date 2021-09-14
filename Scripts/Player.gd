@@ -25,11 +25,18 @@ func show_number_of_infantaries_received(infantaries):
 func receive_infantary():
 	var infantaries_received_by_number_of_territories = receive_infantary_by_number_of_territories()
 	var infantaries_received_by_continens_conquered = receive_infantary_by_continents_conquered()
+	var infantaries_received_by_traded_cards = receive_infantary_by_traded_cards()
 	var infantaries_received = infantaries_received_by_continens_conquered
 	infantaries_received[""] = infantaries_received_by_number_of_territories
 	for i in infantaries_received:
 		infantary_count += infantaries_received[i]
+	infantary_count += infantaries_received_by_traded_cards
 	show_number_of_infantaries_received(infantary_count)
+
+func receive_infantary_by_traded_cards():
+	var trade_amount = get_node("/root/Main/CardsWindow").cards_infantary_trade_amount
+	get_node("/root/Main/CardsWindow").cards_infantary_trade_amount = 0
+	return trade_amount
 
 func receive_infantary_by_number_of_territories():
 	var number_territories = len(get_territories_conquered_by_player())
@@ -48,6 +55,15 @@ func get_territories_conquered_by_player():
 		if(ter.player_owner_index == get_index()):
 			owned_territories.append(ter)
 	return owned_territories
+	
+func get_territory_cards_owned_by_player():
+	var all_territories = get_tree().get_nodes_in_group("territories")
+	var owned_territory_cards = []
+	for ter in all_territories:
+		if (ter.player_card_owner_index == get_index()):
+			owned_territory_cards.append(ter)
+	return owned_territory_cards
+	
 
 func get_continents_conquered_by_player():
 	var continents_conquered = []

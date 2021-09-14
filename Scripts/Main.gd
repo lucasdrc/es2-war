@@ -9,7 +9,10 @@ onready var log_dialog_scene = preload("res://Scenes/LogDialog.tscn")
 onready var PLAYER_COUNT = GameInfo.PLAYER_COUNT
 onready var START_INFANTARY_COUNT = 22
 onready var current_player = 0
+onready var receives_territory_card = false
 onready var territories = get_tree().get_nodes_in_group("territories")
+onready var shapes = ["triangle", "rectangle", "circle"]
+onready var shapeList = []
 onready var selected_territory = null
 onready var players = []
 
@@ -36,9 +39,28 @@ func _current_player_movement_done():
 		return players[current_player].infantary_count == 0
 
 func update_current_player():
+	if (receives_territory_card):
+		reveive_territory_card()
+		receives_territory_card = false
 	current_player = (current_player + 1)%PLAYER_COUNT
 	Log.add_log_msg("Current player updated: {0} ({1}).".format([players[current_player].name,
 															 players[current_player].color.name]))
+	instantiate_player_cards_window()
+	
+	
+func reveive_territory_card():
+	var counter = 0
+	var exit = false
+	while counter < len(territories) and not exit:
+		if territories[counter].player_card_owner_index == null:
+			territories[counter].player_card_owner_index = current_player
+			exit = true
+		counter += 1
+
+func instantiate_player_cards_window():
+	var cards_window = get_node("/root/Main/CardsWindow")
+	cards_window.player_index = current_player
+	cards_window.card_scenes = []
 	
 func _update_game_state():
 	if(current_state == GameInfo.GAME_STATES.INITIAL and _current_player_movement_done()):
@@ -55,14 +77,24 @@ func _update_NextPhaseButton():
 		$NextPhaseButton.text = "DONE ATTACKING"
 	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES):
 		$NextPhaseButton.text = "FINISH TURN"
+	elif(current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS):
+		$NextPhaseButton.text = "DONE TRADING CARDS"
 	else: $NextPhaseButton.visible = false
 
 func _on_NextPhaseButton_pressed():
+	var cards_window = get_node("/root/Main/CardsWindow")
+	cards_window.init_cards(current_player)
+	if (current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS and not cards_window.has_to_trade_cards()):
+		change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 	if(current_state == GameInfo.GAME_STATES.ATTACKING):
 		change_game_state(GameInfo.GAME_STATES.MOVING_TERRITORIES)
 	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES):
 		update_current_player()
-		change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
+		cards_window.init_cards(current_player)
+		if (cards_window.can_trade_cards()):
+			change_game_state(GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS)
+		else:
+			change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 
 func _instantiating_players():
 	for i in range(PLAYER_COUNT):
@@ -76,14 +108,19 @@ func _instantiating_players():
 
 func _start_territories():
 	territories.shuffle()
+	for i in range(shapes.size()):
+		for j in range(territories.size() / shapes.size()):
+			shapeList.append(shapes[i])
+	shapeList.shuffle()
 	for i in range(territories.size()):
 		current_player = i%PLAYER_COUNT
 		place_infantary(territories[i])
 		territories[i].player_owner_index = current_player
+		territories[i].shape = shapeList[i]
 	Log.add_log_msg("Territories assigned to players.")
 
 func place_infantary(territory):
-	if(players[current_player].infantary_count):
+	if (players[current_player].infantary_count):
 		players[current_player].infantary_count -= 1
 		territory.infantary_count += 1
 		Log.add_log_msg("+1 infantary added to %s." % territory.name)
@@ -110,6 +147,7 @@ func attack_territory(attacking_territory: Territory, defending_territory: Terri
 			dialog.attacker_territory = attacking_territory
 			dialog.defeated_territory = defending_territory
 			add_child(dialog)
+			receives_territory_card = true
 	else:
 		attacking_territory.infantary_count -= 1
 	print("Attack: ", attacking_player_dice, " -- Defense: ", defending_player_dice)
