@@ -27,19 +27,17 @@ func init_cards(player_index):
 			card_scene_instance.territory_text = territory.name
 			card_scene_instance.shape_text = territory.shape
 			card_scene_instance.image = "res://Resources/" + territory.shape + ".png"
+			if territory.player_card_owner_index == territory.player_owner_index:
+				card_scene_instance.plus_two_infantry = true
 			$GridContainer.add_child(card_scene_instance)
 			card_scenes.append(card_scene_instance)
-	print(Main.current_state)
-	print_cards()
-	print(Main.current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS)
 	var trade_available = Main.current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS and can_trade_cards()
-	set_trade_button_and_checkboxes_visibility(!trade_available)
+	set_trade_button_and_checkboxes_visibility(trade_available)
 
 func print_cards(cards=card_scenes):
 	var card_strings = []
 	for card in cards:
 		card_strings.append("Territory: %s; Shape: %s" % [card.territory_text, card.shape_text])
-	print(card_strings)
 	return
 
 func has_to_trade_cards():
@@ -71,22 +69,14 @@ func _on_TradeCardsButton_pressed():
 			selected_cards.append(card)
 			if not shapes.has(card.shape_text):
 				shapes.append(card.shape_text)
-	print(selected_cards)
-	print(shapes)
-	print(cards_infantary_trade)
 	if len(selected_cards) == 3 and len(shapes) != 2:
 		trade_cards(selected_cards)
-		
-		print("trade cards")
-		print_cards(card_scenes)
 		card_scenes = subtract_list(card_scenes, selected_cards)
-		print_cards(card_scenes)
 		for card in selected_cards:
 			card.queue_free()
-		print_cards(card_scenes)
 		set_trade_button_and_checkboxes_visibility(false)
 	else:
-		print("do not trade cards")
+		pass
 	
 func subtract_list(l1, l2):
 	var l3 = []
@@ -99,11 +89,9 @@ func trade_cards(selected_cards):
 	if cards_infantary_trade_index > 5:
 		var new_amount = cards_infantary_trade[cards_infantary_trade_index - 1] + 5
 		cards_infantary_trade.append(new_amount)
-	print(cards_infantary_trade[cards_infantary_trade_index])
 	cards_infantary_trade_amount = cards_infantary_trade[cards_infantary_trade_index]
 	cards_infantary_trade_index += 1
 	var territories = get_tree().get_nodes_in_group("territories")
-	print_cards(selected_cards)
 	for ter in territories:
 		if ter.player_card_owner_index == player_index:
 			for card in selected_cards:
@@ -111,8 +99,6 @@ func trade_cards(selected_cards):
 					if ter.player_owner_index == ter.player_card_owner_index:
 						ter.infantary_count += 2
 					ter.player_card_owner_index = null
-					print(ter.name)
-					
 
 func set_trade_button_and_checkboxes_visibility(is_visible):
 	$TradeCardsButton.visible = is_visible

@@ -70,9 +70,9 @@ __meta__ = {
 
 [node name="TradeCardsButton" type="Button" parent="CardsWindow"]
 margin_left = 545.0
-margin_top = 396.0
+margin_top = 421.427
 margin_right = 969.0
-margin_bottom = 492.0
+margin_bottom = 517.427
 custom_fonts/font = SubResource( 2 )
 text = "Trade Cards"
 __meta__ = {
