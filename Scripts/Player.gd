@@ -34,8 +34,6 @@ func receive_infantary():
 func receive_infantary_by_traded_cards():
 	var trade_amount = get_node("/root/Main/CardsWindow").cards_infantary_trade_amount
 	get_node("/root/Main/CardsWindow").cards_infantary_trade_amount = 0
-	print("trade_amount")
-	print(trade_amount)
 	return trade_amount
 
 func receive_infantary_by_number_of_territories():

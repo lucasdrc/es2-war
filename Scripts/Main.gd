@@ -110,23 +110,11 @@ func _start_territories():
 		for j in range(territories.size() / shapes.size()):
 			shapeList.append(shapes[i])
 	shapeList.shuffle()
-	# var dummy = []
-	# var dummy2 = []
 	for i in range(territories.size()):
 		current_player = i%PLAYER_COUNT
 		place_infantary(territories[i])
 		territories[i].player_owner_index = current_player
 		territories[i].shape = shapeList[i]
-		# if not dummy.has(territories[i].shape):
-		# 	territories[i].player_card_owner_index = 0
-		# 	dummy.append(territories[i].shape)
-			
-		# if i > 20 and not dummy2.has(territories[i].shape):
-		# 	territories[i].player_card_owner_index = 1
-		# 	dummy2.append(territories[i].shape)
-		# if i >= 40:
-		# 	territories[i].player_card_owner_index = 0
-
 	Log.add_log_msg("Territories assigned to players.")
 
 func place_infantary(territory):
@@ -152,7 +140,6 @@ func attack_territory(attacking_territory: Territory, defending_territory: Terri
 			dialog.defeated_territory = defending_territory
 			add_child(dialog)
 			receives_territory_card = true
-			print(receives_territory_card)
 	else:
 		attacking_territory.infantary_count -= 1
 	print("Attack: ", attacking_player_dice, " -- Defense: ", defending_player_dice)
