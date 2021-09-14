@@ -26,13 +26,14 @@ func init_cards(player_index):
 			var card_scene_instance = card_scene.instance()
 			card_scene_instance.territory_text = territory.name
 			card_scene_instance.shape_text = territory.shape
+			card_scene_instance.image = "res://Resources/" + territory.shape + ".png"
 			$GridContainer.add_child(card_scene_instance)
 			card_scenes.append(card_scene_instance)
 	print(Main.current_state)
 	print_cards()
 	print(Main.current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS)
 	var trade_available = Main.current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS and can_trade_cards()
-	set_trade_button_and_checkboxes_visibility(trade_available)
+	set_trade_button_and_checkboxes_visibility(!trade_available)
 
 func print_cards(cards=card_scenes):
 	var card_strings = []

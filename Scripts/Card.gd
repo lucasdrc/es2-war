@@ -8,11 +8,13 @@ extends Control
 var territory_text = ""
 var shape_text = ""
 var selected = false
+var image = "res://Resources/rectangle.png"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Panel/ColorRect/Shape.text = shape_text
+	# $Panel/ColorRect/Shape.text = shape_text
 	$Panel/ColorRect/Territory.text = territory_text
+	$Panel/ColorRect/Shape.texture = load(image)
 	pass # Replace with function body.
 
 
@@ -21,6 +23,4 @@ func _ready():
 #	pass
 
 func _on_CheckBox_pressed():
-	selected = true
-	# print(selected)
-	pass # Replace with function body.
+	selected = !selected

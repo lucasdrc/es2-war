@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Board.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=3]
 [ext_resource path="res://Resources/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scripts/CardsWindow.gd" type="Script" id=5]
+[ext_resource path="res://Fonts/AmericanCaptainPatrius02Fre-G06G.otf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -13,6 +14,14 @@ outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 6 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
@@ -43,7 +52,7 @@ __meta__ = {
 visible = true
 margin_left = -450.72
 margin_top = -265.723
-margin_right = 468.28
+margin_right = 989.28
 margin_bottom = 306.277
 script = ExtResource( 5 )
 __meta__ = {
@@ -53,36 +62,36 @@ __meta__ = {
 [node name="GridContainer" type="GridContainer" parent="CardsWindow"]
 margin_right = 3020.0
 margin_bottom = 1440.0
-custom_constants/hseparation = 400
+custom_constants/hseparation = 280
 columns = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TradeCardsButton" type="Button" parent="CardsWindow"]
-margin_left = 417.99
-margin_top = 456.541
-margin_right = 470.99
-margin_bottom = 509.541
+margin_left = 545.0
+margin_top = 396.0
+margin_right = 969.0
+margin_bottom = 492.0
+custom_fonts/font = SubResource( 2 )
 text = "Trade Cards"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ViewCardsButton" type="Button" parent="."]
-margin_left = -107.547
-margin_top = 951.909
-margin_right = 133.453
-margin_bottom = 1032.91
-text = "Ver Cartas"
+margin_left = -301.063
+margin_top = 952.0
+margin_right = 321.937
+margin_bottom = 1087.0
+custom_fonts/font = SubResource( 3 )
+text = "View Territory Cards"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Players" type="Node2D" parent="."]
 
-[connection signal="pressed" from="CardsWindow/TradeCardsButton" to="CardsWindow" method="_on_TradeCardsButton_pressed"]
-[connection signal="pressed" from="ViewCardsButton" to="CardsWindow" method="_on_Button_pressed"]
 [node name="NextPhaseButton" type="Button" parent="."]
 margin_left = 656.0
 margin_top = -1031.0
@@ -105,6 +114,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="CardsWindow/TradeCardsButton" to="CardsWindow" method="_on_TradeCardsButton_pressed"]
+[connection signal="pressed" from="ViewCardsButton" to="CardsWindow" method="_on_Button_pressed"]
 [connection signal="pressed" from="NextPhaseButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="NextPhaseButton" to="." method="_on_NextPhaseButton_pressed"]
 [connection signal="pressed" from="LogButton" to="." method="_on_Button_pressed"]
