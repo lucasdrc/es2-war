@@ -52,6 +52,7 @@ func get_player(index):
 func showDicesResultDialog(attack):
 	$DicesResultDialog.popup()
 	$DicesResultDialog.showAttack(attack)
+	$DicesResultDialog.calculateDefense(4) #enviar numero de tropas q tem defendendo
 
 func _on_Button_pressed():
 	$AttackChooseTroopsDialog.popup()

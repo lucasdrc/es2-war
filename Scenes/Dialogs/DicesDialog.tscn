@@ -1,12 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Dice/PlayersDice.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/DicesDialog.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Buttons/DialogButton.tscn" type="PackedScene" id=3]
 
 [node name="DicesResultDialog" type="WindowDialog"]
 margin_right = 800.0
-margin_bottom = 450.0
-rect_min_size = Vector2( 450, 450 )
+margin_bottom = 600.0
+rect_min_size = Vector2( 450, 700 )
 window_title = "Escolha de tropas"
 script = ExtResource( 2 )
 __meta__ = {
@@ -26,12 +27,9 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 400.0
-margin_bottom = 400.0
+margin_bottom = 600.0
 
 [node name="Dice1" parent="GridContainer/Attack/GridContainer" index="0"]
-visible = false
-
-[node name="OneBlackSpot" parent="GridContainer/Attack/GridContainer/Dice1/One" index="0"]
 visible = false
 
 [node name="Dice2" parent="GridContainer/Attack/GridContainer" index="1"]
@@ -54,7 +52,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 404.0
 margin_right = 804.0
-margin_bottom = 400.0
+margin_bottom = 600.0
 
 [node name="Label" parent="GridContainer/Defense" index="0"]
 text = "Defesa"
@@ -77,6 +75,26 @@ visible = false
 [node name="Dice6" parent="GridContainer/Defense/GridContainer" index="5"]
 visible = false
 
+[node name="ButtonBox" type="VBoxContainer" parent="."]
+margin_left = 275.0
+margin_top = 600.0
+margin_right = 525.0
+margin_bottom = 650.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmButton" parent="ButtonBox" instance=ExtResource( 3 )]
+
+[node name="DialogLabel" parent="ButtonBox/ConfirmButton" index="0"]
+text = "Confirmar"
+
+[connection signal="pressed" from="ButtonBox/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
+
 [editable path="GridContainer/Attack"]
 [editable path="GridContainer/Attack/GridContainer/Dice1"]
 [editable path="GridContainer/Defense"]
+[editable path="ButtonBox/ConfirmButton"]
