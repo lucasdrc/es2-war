@@ -87,5 +87,20 @@ func get_infantaries_received_by_continents_conquered(continents_conquered):
 		infataries_received[continent] = util_script.infantaries_received_by_continent_conquered[continent]
 	return infataries_received
 
+func get_possible_attacking_territories():
+	var all_territories = get_tree().get_nodes_in_group("territories")
+	var possible_attacking_territories = []
+	for ter in all_territories:
+		if(ter.player_owner_index == get_index() and ter.infantary_count > 1):
+			for name in ter.adjacent_names:
+				if(get_territory_by_name(name).player_owner_index != get_index()):
+					possible_attacking_territories.append(ter)
+					break
+	return possible_attacking_territories
+
+func get_territory_by_name(name):
+	var all_territories = get_tree().get_nodes_in_group("territories")
+	for territory in all_territories: if(territory.name == name): return territory
+
 func is_ia():
 	return self.state == GameInfo.PLAYER_STATE.IA

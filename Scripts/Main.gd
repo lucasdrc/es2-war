@@ -101,7 +101,7 @@ func _on_NextPhaseButton_pressed():
 			change_game_state(GameInfo.GAME_STATES.PLACING_TERRITORIES)
 
 func _simulate_ia_player():
-	OS.delay_msec(200)
+	OS.delay_msec(400)
 	if(current_state == GameInfo.GAME_STATES.INITIAL): place_territories_ia_player()
 	elif(current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES):
 		var dialog = players[current_player].get_node_or_null("DialogBox")
@@ -115,10 +115,38 @@ func place_territories_ia_player():
 	var i = random_number_gen.randi_range(0, territories.size() - 1)
 	place_infantary(territories[i])
 
-func attack_ia_player(): pass
-	#var territories = players[current_player].get_territories_conquered_by_player()
-	#var i = random_number_gen.randi_range(0, territories.size() - 1)
-	#place_infantary(territories[i])
+func continue_attacking(): return random_number_gen.randi_range(1, 10) > 2
+
+func get_territory_by_name(name):
+	var all_territories = get_tree().get_nodes_in_group("territories")
+	for territory in all_territories: if(territory.name == name): return territory
+
+func attack_ia_player():
+	var dialog = get_node_or_null("Popup")
+	if(dialog):
+		var possibilities = []
+		var button_1 = get_node("Popup/MarginContainer/VBoxContainer/HBoxContainer/Button1Infantary")
+		var button_2 = get_node("Popup/MarginContainer/VBoxContainer/HBoxContainer/Button2Infantary")
+		var button_3 = get_node("Popup/MarginContainer/VBoxContainer/HBoxContainer/Button3Infantary")
+		print(button_1, button_2, button_3)
+		if(not button_1.disabled): possibilities.push_back(button_1)
+		if(not button_2.disabled): possibilities.push_back(button_2)
+		if(not button_3.disabled): possibilities.push_back(button_3)
+		var i = random_number_gen.randi_range(0, possibilities.size() - 1)
+		possibilities[i].emit_signal("pressed")
+	else:
+		var attacking_territories = players[current_player].get_possible_attacking_territories()
+		if(attacking_territories.size() > 0 and continue_attacking()):
+			var i = random_number_gen.randi_range(0, attacking_territories.size() - 1)
+			var defending_territories = []
+			for name in attacking_territories[i].adjacent_names:
+				if(get_territory_by_name(name).player_owner_index != current_player):
+					defending_territories.push_back(name)
+			var j = random_number_gen.randi_range(0, defending_territories.size() - 1)
+			var defending_territory = get_territory_by_name(defending_territories[j])
+			attack_territory(attacking_territories[i], defending_territory)
+		else:
+			get_node("NextPhaseButton").emit_signal("pressed")
 
 func _instantiating_players():
 	for i in range(PLAYER_COUNT):
