@@ -1,6 +1,8 @@
 extends WindowDialog
 
 var rng = RandomNumberGenerator.new()
+var totalAttack = 0
+var totalDefense = 0
 
 func _ready():
 	pass # Replace with function body.
@@ -25,10 +27,9 @@ func showAttack(attack):
 		else:
 			$GridContainer/Attack/GridContainer/Dice6.show()
 			$GridContainer/Attack/GridContainer/Dic6.showDice(attack[n])
-	var result = 0;
 	for value in attack:
-		result += value
-	$GridContainer/Attack/VBoxContainer/Result.text = str(result)
+		totalAttack += value
+	$GridContainer/Attack/VBoxContainer/Result.text = str(totalAttack)
 
 func showDefense(defense):
 	for n in defense.size():
@@ -50,10 +51,9 @@ func showDefense(defense):
 		else:
 			$GridContainer/Defense/GridContainer/Dice6.show()
 			$GridContainer/Defense/GridContainer/Dic6.showDice(defense[n])
-	var result = 0;
 	for value in defense:
-		result += value
-	$GridContainer/Defense/VBoxContainer/Result.text = str(result)
+		totalDefense += value
+	$GridContainer/Defense/VBoxContainer/Result.text = str(totalDefense)
 
 func calculateDefense(num_troops):
 	var dice_results = []
