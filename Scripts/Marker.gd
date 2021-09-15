@@ -16,6 +16,7 @@ func get_territory() -> Territory:
 	return get_parent() as Territory
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
+	if Main.get_current_player().is_ia(): return
 	if event.is_action_pressed("click"):
 		match(Main.get_current_state()):
 			GameInfo.GAME_STATES.INITIAL, GameInfo.GAME_STATES.PLACING_TERRITORIES:
