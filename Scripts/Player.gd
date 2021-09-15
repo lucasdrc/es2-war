@@ -98,6 +98,17 @@ func get_possible_attacking_territories():
 					break
 	return possible_attacking_territories
 
+func get_possible_moving_territories():
+	var all_territories = get_tree().get_nodes_in_group("territories")
+	var possible_moving_territories = []
+	for ter in all_territories:
+		if(ter.player_owner_index == get_index() and ter.infantary_count > 1):
+			for name in ter.adjacent_names:
+				if(get_territory_by_name(name).player_owner_index == get_index()):
+					possible_moving_territories.append(ter)
+					break
+	return possible_moving_territories
+
 func get_territory_by_name(name):
 	var all_territories = get_tree().get_nodes_in_group("territories")
 	for territory in all_territories: if(territory.name == name): return territory

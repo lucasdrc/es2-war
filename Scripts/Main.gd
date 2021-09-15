@@ -109,6 +109,7 @@ func _simulate_ia_player():
 			if(dialog.time >= 0.2): dialog.get_node("Button").emit_signal("pressed")
 		else: place_territories_ia_player()
 	elif(current_state == GameInfo.GAME_STATES.ATTACKING): attack_ia_player()
+	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES): move_territories_ia_player()
 
 func place_territories_ia_player():
 	var territories = players[current_player].get_territories_conquered_by_player()
@@ -128,7 +129,6 @@ func attack_ia_player():
 		var button_1 = get_node("Popup/MarginContainer/VBoxContainer/HBoxContainer/Button1Infantary")
 		var button_2 = get_node("Popup/MarginContainer/VBoxContainer/HBoxContainer/Button2Infantary")
 		var button_3 = get_node("Popup/MarginContainer/VBoxContainer/HBoxContainer/Button3Infantary")
-		print(button_1, button_2, button_3)
 		if(not button_1.disabled): possibilities.push_back(button_1)
 		if(not button_2.disabled): possibilities.push_back(button_2)
 		if(not button_3.disabled): possibilities.push_back(button_3)
@@ -147,6 +147,23 @@ func attack_ia_player():
 			attack_territory(attacking_territories[i], defending_territory)
 		else:
 			get_node("NextPhaseButton").emit_signal("pressed")
+
+func continue_moving_territories(): return random_number_gen.randi_range(1, 3) > 1
+
+func move_territories_ia_player():
+	OS.delay_msec(5000)
+	var moving_territories = players[current_player].get_possible_moving_territories()
+	if(moving_territories.size() > 0 and continue_moving_territories()):	
+		var i = random_number_gen.randi_range(0, moving_territories.size() - 1)
+		var receiver_territories = []
+		for name in moving_territories[i].adjacent_names:
+			if(get_territory_by_name(name).player_owner_index == current_player):
+				receiver_territories.push_back(name)
+		var j = random_number_gen.randi_range(0, receiver_territories.size() - 1)
+		var receiver_territory = get_territory_by_name(receiver_territories[j])
+		move_territory(moving_territories[i], receiver_territory)
+	else:
+		get_node("NextPhaseButton").emit_signal("pressed")
 
 func _instantiating_players():
 	for i in range(PLAYER_COUNT):
