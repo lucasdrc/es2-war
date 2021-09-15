@@ -20,7 +20,7 @@ var selected_destination_territory = null
 
 func show_number_of_infantaries_received(infantaries):
 	var dialog_scene = load("res://Scenes/Dialog.tscn").instance()
-	dialog_scene.get_node("DialogTextLabel").dialog_text = "Você recebeu " + str(infantaries) + " tropas!"
+	dialog_scene.dialog_text= "Você recebeu " + str(infantaries) + " tropas!"
 	add_child(dialog_scene)
 
 func receive_infantary():
