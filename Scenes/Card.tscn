@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Fonts/AmericanCaptainPatrius02Fre-G06G.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Card.gd" type="Script" id=2]
+[ext_resource path="res://Resources/circle.png" type="Texture" id=3]
+[ext_resource path="res://Resources/checked.png" type="Texture" id=4]
+[ext_resource path="res://Resources/unchecked.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 17
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 19
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="Card" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1300.0
+margin_bottom = -700.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="VBoxContainer" parent="."]
+margin_left = 35.0
+margin_top = 55.0
+margin_right = 291.0
+margin_bottom = 355.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+margin_right = 256.0
+margin_bottom = 300.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Territory" type="Label" parent="Panel/ColorRect"]
+margin_left = 4.21059
+margin_top = 7.41765
+margin_right = 254.211
+margin_bottom = 207.418
+rect_min_size = Vector2( 250, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Brazil"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="Panel/ColorRect"]
+margin_left = 102.413
+margin_top = 223.173
+margin_right = 161.413
+margin_bottom = 282.173
+custom_icons/checked = ExtResource( 4 )
+custom_icons/unchecked = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shape" type="Sprite" parent="Panel/ColorRect"]
+position = Vector2( 128.818, 141.59 )
+scale = Vector2( 0.201098, 0.201098 )
+texture = ExtResource( 3 )
+
+[node name="PlusTwoInfantry" type="Label" parent="Panel/ColorRect"]
+margin_left = 58.8812
+margin_top = 48.8135
+margin_right = 229.881
+margin_bottom = 72.8135
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "+2 Infantry"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Panel/ColorRect/CheckBox" to="." method="_on_CheckBox_pressed"]

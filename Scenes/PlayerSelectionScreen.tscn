@@ -40,7 +40,7 @@ __meta__ = {
 }
 
 [node name="PlayerSelectionLabel" type="Label" parent="Menu"]
-margin_right = 1240.0
+margin_right = 1880.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 1240, 0 )
 size_flags_horizontal = 3
@@ -54,7 +54,7 @@ __meta__ = {
 
 [node name="PlayerSelection" type="VBoxContainer" parent="Menu"]
 margin_top = 52.0
-margin_right = 1240.0
+margin_right = 1880.0
 margin_bottom = 816.0
 rect_min_size = Vector2( 1240, 0 )
 size_flags_horizontal = 3
@@ -62,7 +62,7 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="Players" type="GridContainer" parent="Menu/PlayerSelection"]
-margin_right = 1240.0
+margin_right = 1880.0
 margin_bottom = 700.0
 rect_min_size = Vector2( 1240, 650 )
 size_flags_horizontal = 3
@@ -172,20 +172,20 @@ branco"
 
 [node name="BottomButtons" type="GridContainer" parent="Menu/PlayerSelection"]
 margin_top = 704.0
-margin_right = 1240.0
+margin_right = 1880.0
 margin_bottom = 764.0
 rect_min_size = Vector2( 1240, 60 )
 size_flags_horizontal = 3
 columns = 2
 
 [node name="BackButton" parent="Menu/PlayerSelection/BottomButtons" instance=ExtResource( 3 )]
-margin_right = 618.0
+margin_right = 938.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="StartGameButton" parent="Menu/PlayerSelection/BottomButtons" instance=ExtResource( 4 )]
-margin_left = 622.0
-margin_right = 1240.0
+margin_left = 942.0
+margin_right = 1880.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 

@@ -2,19 +2,17 @@ extends Node
 
 class_name PlayerSelectionScreen
 
-enum PLAYER_STATE {PLAYER, IA, DISABLED}
-
 var players = [
-	PLAYER_STATE.PLAYER, #BLUE
-	PLAYER_STATE.PLAYER, #BLACK
-	PLAYER_STATE.PLAYER, #GREEN
-	PLAYER_STATE.PLAYER, #ORANGE
-	PLAYER_STATE.PLAYER, #YELLOW
-	PLAYER_STATE.PLAYER, #WHITE
+	GameInfo.PLAYER_STATE.PLAYER, #BLUE
+	GameInfo.PLAYER_STATE.PLAYER, #BLACK
+	GameInfo.PLAYER_STATE.PLAYER, #GREEN
+	GameInfo.PLAYER_STATE.PLAYER, #ORANGE
+	GameInfo.PLAYER_STATE.PLAYER, #YELLOW
+	GameInfo.PLAYER_STATE.PLAYER, #WHITE
 ]
 
 func _ready():
-	pass
+	Log.add_log_msg("Player Selection Screen loaded.")
 
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://Scenes/TitleScreen.tscn")
