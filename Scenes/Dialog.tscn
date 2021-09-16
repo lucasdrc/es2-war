@@ -13,6 +13,7 @@ font_data = ExtResource( 2 )
 [node name="DialogBox" type="Polygon2D"]
 color = Color( 0.254902, 0.207843, 0.207843, 1 )
 polygon = PoolVector2Array( 2.4137, 0.038147, 404.362, -1.64365, 406.044, 222.035, -0.94989, 222.035 )
+script = ExtResource( 1 )
 
 [node name="DialogTextLabel" type="RichTextLabel" parent="."]
 margin_left = 1.68176
@@ -21,7 +22,6 @@ margin_right = 404.682
 margin_bottom = 145.908
 custom_fonts/normal_font = SubResource( 1 )
 text = "VOCÊ RECEBEU 42 TROPAS"
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -37,4 +37,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Button" to="DialogTextLabel" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

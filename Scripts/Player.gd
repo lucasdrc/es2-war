@@ -12,6 +12,7 @@ var COLORS = [
 ]
 var infantary_count = 0
 var color = null
+var state
 var util_script = load("res://Scripts/Util.gd").new()
 var selected_territory = null
 var selected_origin_territory = null
@@ -19,7 +20,7 @@ var selected_destination_territory = null
 
 func show_number_of_infantaries_received(infantaries):
 	var dialog_scene = load("res://Scenes/Dialog.tscn").instance()
-	dialog_scene.get_node("DialogTextLabel").dialog_text = "Você recebeu " + str(infantaries) + " tropas!"
+	dialog_scene.dialog_text= "Você recebeu " + str(infantaries) + " tropas!"
 	add_child(dialog_scene)
 
 func receive_infantary():
@@ -31,7 +32,7 @@ func receive_infantary():
 	for i in infantaries_received:
 		infantary_count += infantaries_received[i]
 	infantary_count += infantaries_received_by_traded_cards
-	show_number_of_infantaries_received(infantary_count)
+	if(not self.is_ia()): show_number_of_infantaries_received(infantary_count)
 
 func receive_infantary_by_traded_cards():
 	var trade_amount = get_node("/root/Main/CardsWindow").cards_infantary_trade_amount
@@ -55,7 +56,7 @@ func get_territories_conquered_by_player():
 		if(ter.player_owner_index == get_index()):
 			owned_territories.append(ter)
 	return owned_territories
-	
+
 func get_territory_cards_owned_by_player():
 	var all_territories = get_tree().get_nodes_in_group("territories")
 	var owned_territory_cards = []
@@ -63,7 +64,6 @@ func get_territory_cards_owned_by_player():
 		if (ter.player_card_owner_index == get_index()):
 			owned_territory_cards.append(ter)
 	return owned_territory_cards
-	
 
 func get_continents_conquered_by_player():
 	var continents_conquered = []
@@ -80,9 +80,38 @@ func continent_conquered_by_player(continent):
 
 func territory_conquered_by_player(territory):
 	return get_tree().get_root().find_node(territory, true, false).player_owner_index == get_index()
-		
+
 func get_infantaries_received_by_continents_conquered(continents_conquered):
 	var infataries_received = {}
 	for continent in continents_conquered:
 		infataries_received[continent] = util_script.infantaries_received_by_continent_conquered[continent]
 	return infataries_received
+
+func get_possible_attacking_territories():
+	var all_territories = get_tree().get_nodes_in_group("territories")
+	var possible_attacking_territories = []
+	for ter in all_territories:
+		if(ter.player_owner_index == get_index() and ter.infantary_count > 1):
+			for name in ter.adjacent_names:
+				if(get_territory_by_name(name).player_owner_index != get_index()):
+					possible_attacking_territories.append(ter)
+					break
+	return possible_attacking_territories
+
+func get_possible_moving_territories():
+	var all_territories = get_tree().get_nodes_in_group("territories")
+	var possible_moving_territories = []
+	for ter in all_territories:
+		if(ter.player_owner_index == get_index() and ter.infantary_count > 1):
+			for name in ter.adjacent_names:
+				if(get_territory_by_name(name).player_owner_index == get_index()):
+					possible_moving_territories.append(ter)
+					break
+	return possible_moving_territories
+
+func get_territory_by_name(name):
+	var all_territories = get_tree().get_nodes_in_group("territories")
+	for territory in all_territories: if(territory.name == name): return territory
+
+func is_ia():
+	return self.state == GameInfo.PLAYER_STATE.IA

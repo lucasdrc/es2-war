@@ -35,7 +35,7 @@ zoom = Vector2( 3, 3 )
 script = ExtResource( 2 )
 
 [node name="Info" type="RichTextLabel" parent="."]
-margin_left = -501.0
+margin_left = -557.0
 margin_top = -1050.0
 margin_right = 499.0
 margin_bottom = -909.0

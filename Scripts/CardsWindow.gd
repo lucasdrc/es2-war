@@ -104,3 +104,20 @@ func set_trade_button_and_checkboxes_visibility(is_visible):
 	$TradeCardsButton.visible = is_visible
 	for card in card_scenes:
 		card.find_node("CheckBox").visible = is_visible
+
+func get_possible_trade():
+	var triangles = []
+	var circles = []
+	var rectangles = []
+	for card in card_scenes:
+		if card.shape_text == "triangle":
+			triangles.append(card)
+			if(triangles.size() == 3): return triangles
+		if card.shape_text == "circle":
+			circles.append(card)
+			if(circles.size() == 3): return circles
+		if card.shape_text == "rectangle":
+			rectangles.append(card)
+			if(rectangles.size() == 3): return rectangles
+		if(triangles.size() > 0 and circles.size() > 0 and rectangles.size() > 0):
+			return [triangles[0], circles[0], rectangles[0]]
