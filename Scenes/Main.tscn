@@ -116,7 +116,7 @@ __meta__ = {
 
 [connection signal="pressed" from="CardsWindow/TradeCardsButton" to="CardsWindow" method="_on_TradeCardsButton_pressed"]
 [connection signal="pressed" from="ViewCardsButton" to="CardsWindow" method="_on_Button_pressed"]
-[connection signal="pressed" from="NextPhaseButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="NextPhaseButton" to="." method="_on_NextPhaseButton_pressed"]
+[connection signal="pressed" from="NextPhaseButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="LogButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="LogButton" to="." method="_on_LogButton_pressed"]
