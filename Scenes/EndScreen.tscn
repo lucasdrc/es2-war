@@ -66,6 +66,9 @@ color = Color( 0, 0, 0, 1 )
 margin_top = 4.0
 margin_bottom = 251.0
 
+[node name="ColorRect" parent="Menu/Center_Row/OutlineWinnerShowcase/WinnerShowcase" index="0"]
+margin_bottom = 247.0
+
 [node name="Buttons" type="VBoxContainer" parent="Menu/Center_Row"]
 margin_top = 261.0
 margin_right = 684.0
@@ -99,4 +102,5 @@ __meta__ = {
 
 [connection signal="pressed" from="Menu/Center_Row/Buttons/NewGameButton" to="." method="_on_NewGameButton_pressed"]
 
+[editable path="Menu/Center_Row/OutlineWinnerShowcase/WinnerShowcase"]
 [editable path="Menu/Center_Row/Buttons/NewGameButton"]

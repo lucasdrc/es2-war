@@ -45,8 +45,10 @@ func update_current_player():
 	current_player = (current_player + 1)%PLAYER_COUNT
 	Log.add_log_msg("Current player updated: {0} ({1}).".format([players[current_player].name,
 															 players[current_player].color.name]))
-	instantiate_player_cards_window()
-	
+	if(players[current_player].get_territories_conquered_by_player().size() == 0):
+		update_current_player()     
+	else:         
+		instantiate_player_cards_window()
 	
 func reveive_territory_card():
 	var counter = 0
@@ -148,6 +150,10 @@ func attack_territory(attacking_territory: Territory, defending_territory: Terri
 			dialog.defeated_territory = defending_territory
 			add_child(dialog)
 			receives_territory_card = true
+			if(checkWinner()):
+				GameInfo.WINNER = players[current_player].color.displayName
+				GameInfo.WINNER_COLOR = players[current_player].color.color
+				get_tree().change_scene("res://Scenes/EndScreen.tscn")
 	else:
 		attacking_territory.infantary_count -= 1
 	print("Attack: ", attacking_player_dice, " -- Defense: ", defending_player_dice)
@@ -177,3 +183,9 @@ func _on_LogButton_pressed():
 	if(get_node_or_null("LogDialog") == null):
 		var log_dialog = log_dialog_scene.instance()
 		add_child(log_dialog)
+		
+func checkWinner():
+	for territory in get_tree().get_nodes_in_group("territories"):
+		if(territory.player_owner_index != current_player):
+			return false
+	return true
