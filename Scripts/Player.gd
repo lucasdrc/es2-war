@@ -32,7 +32,7 @@ func receive_infantary():
 	for i in infantaries_received:
 		infantary_count += infantaries_received[i]
 	infantary_count += infantaries_received_by_traded_cards
-	show_number_of_infantaries_received(infantary_count)
+	if(not self.is_ia()): show_number_of_infantaries_received(infantary_count)
 
 func receive_infantary_by_traded_cards():
 	var trade_amount = get_node("/root/Main/CardsWindow").cards_infantary_trade_amount

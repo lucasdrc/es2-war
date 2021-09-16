@@ -33,7 +33,10 @@ func _process(delta):
 	$Info.text += "INFANTARY REMAINING: " + str(players[current_player].infantary_count)
 	_update_game_state()
 	_update_NextPhaseButton()
-	if(_current_player_is_ia()): _simulate_ia_player()
+	if(_current_player_is_ia()):
+		get_node("ViewCardsButton").visible = false
+		_simulate_ia_player()
+	else: get_node("ViewCardsButton").visible = true
 
 func _current_player_movement_done():
 	if(current_state == GameInfo.GAME_STATES.INITIAL or
@@ -76,12 +79,15 @@ func _update_game_state():
 		change_game_state(GameInfo.GAME_STATES.MOVING_TERRITORIES)
 
 func _update_NextPhaseButton(): 
-	if(current_state == GameInfo.GAME_STATES.ATTACKING):
+	if(players[current_player].is_ia()): $NextPhaseButton.visible = false
+	elif(current_state == GameInfo.GAME_STATES.ATTACKING):
 		$NextPhaseButton.visible = true
 		$NextPhaseButton.text = "DONE ATTACKING"
 	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES):
+		$NextPhaseButton.visible = true
 		$NextPhaseButton.text = "FINISH TURN"
 	elif(current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS):
+		$NextPhaseButton.visible = true
 		$NextPhaseButton.text = "DONE TRADING CARDS"
 	else: $NextPhaseButton.visible = false
 
@@ -102,13 +108,9 @@ func _on_NextPhaseButton_pressed():
 
 func _simulate_ia_player():
 	OS.delay_msec(400)
-	if(current_state == GameInfo.GAME_STATES.INITIAL): place_territories_ia_player()
+	if(current_state == GameInfo.GAME_STATES.INITIAL or 
+	   current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES): place_territories_ia_player()
 	elif(current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS): trade_cards_ia_player()
-	elif(current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES):
-		var dialog = players[current_player].get_node_or_null("DialogBox")
-		if(dialog):
-			if(dialog.time >= 0.2): dialog.get_node("Button").emit_signal("pressed")
-		else: place_territories_ia_player()
 	elif(current_state == GameInfo.GAME_STATES.ATTACKING): attack_ia_player()
 	elif(current_state == GameInfo.GAME_STATES.MOVING_TERRITORIES): move_territories_ia_player()
 
@@ -170,11 +172,9 @@ func trade_cards(): return random_number_gen.randi_range(0, 1) == 1
 func trade_cards_ia_player():
 	var cards_window = get_node("CardsWindow")
 	if(cards_window.can_trade_cards() and trade_cards()) or cards_window.has_to_trade_cards():
-		get_node("ViewCardsButton").emit_signal("pressed")
 		var cards = cards_window.get_possible_trade()
 		for card in cards: card.get_node("Panel/ColorRect/CheckBox").emit_signal("pressed")
 		get_node("CardsWindow/TradeCardsButton").emit_signal("pressed")
-		get_node("CardsWindow").get_close_button().emit_signal("pressed")
 	get_node("NextPhaseButton").emit_signal("pressed")
 
 func _instantiating_players():
@@ -229,6 +229,7 @@ func attack_territory(attacking_territory: Territory, defending_territory: Terri
 			dialog.attacker_territory = attacking_territory
 			dialog.defeated_territory = defending_territory
 			add_child(dialog)
+			if(players[current_player].is_ia()): dialog.visible = false
 			receives_territory_card = true
 	else:
 		attacking_territory.infantary_count -= 1
