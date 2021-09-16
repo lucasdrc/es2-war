@@ -103,6 +103,7 @@ func _on_NextPhaseButton_pressed():
 func _simulate_ia_player():
 	OS.delay_msec(400)
 	if(current_state == GameInfo.GAME_STATES.INITIAL): place_territories_ia_player()
+	elif(current_state == GameInfo.GAME_STATES.TRADING_TERRITORY_CARDS): trade_cards_ia_player()
 	elif(current_state == GameInfo.GAME_STATES.PLACING_TERRITORIES):
 		var dialog = players[current_player].get_node_or_null("DialogBox")
 		if(dialog):
@@ -151,7 +152,6 @@ func attack_ia_player():
 func continue_moving_territories(): return random_number_gen.randi_range(1, 3) > 1
 
 func move_territories_ia_player():
-	OS.delay_msec(5000)
 	var moving_territories = players[current_player].get_possible_moving_territories()
 	if(moving_territories.size() > 0 and continue_moving_territories()):	
 		var i = random_number_gen.randi_range(0, moving_territories.size() - 1)
@@ -164,6 +164,18 @@ func move_territories_ia_player():
 		move_territory(moving_territories[i], receiver_territory)
 	else:
 		get_node("NextPhaseButton").emit_signal("pressed")
+
+func trade_cards(): return random_number_gen.randi_range(0, 1) == 1
+
+func trade_cards_ia_player():
+	var cards_window = get_node("CardsWindow")
+	if(cards_window.can_trade_cards() and trade_cards()) or cards_window.has_to_trade_cards():
+		get_node("ViewCardsButton").emit_signal("pressed")
+		var cards = cards_window.get_possible_trade()
+		for card in cards: card.get_node("Panel/ColorRect/CheckBox").emit_signal("pressed")
+		get_node("CardsWindow/TradeCardsButton").emit_signal("pressed")
+		get_node("CardsWindow").get_close_button().emit_signal("pressed")
+	get_node("NextPhaseButton").emit_signal("pressed")
 
 func _instantiating_players():
 	for i in range(PLAYER_COUNT):
