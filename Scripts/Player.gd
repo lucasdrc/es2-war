@@ -3,12 +3,12 @@ extends Node2D
 class_name Player
 
 var COLORS = [
-	{"color": Color.red, "name": "RED"},
-	{"color": Color.green, "name": "GREEN"},
-	{"color": Color.blue, "name": "BLUE"},
-	{"color": Color.orange, "name": "ORANGE"},
-	{"color": Color.burlywood, "name": "CREAM"},
-	{"color": Color.black, "name": "BLACK"}
+	{"color": Color("009fff"), "name": "BLUE", "displayName": "JOGADOR AZUL"},
+	{"color": Color("121212"), "name": "BLACK", "displayName": "JOGADOR PRETO"},
+	{"color": Color("008100"), "name": "GREEN", "displayName": "JOGADOR VERDE"},
+	{"color": Color("a33d00"), "name": "ORANGE", "displayName": "JOGADOR LARANJA"},
+	{"color": Color("ffcd00"), "name": "YELLOW", "displayName": "JOGADOR AMARELO"},
+	{"color": Color("dedede"), "name": "WHITE", "displayName": "JOGADOR BRANCO"}
 ]
 var infantary_count = 0
 var color = null
